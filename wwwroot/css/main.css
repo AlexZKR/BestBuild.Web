@@ -48,7 +48,7 @@ a:hover {
     left: auto;
 }
 
-.top-menu li a::after {
+.top-menu li a.nav-link::after {
     content: '';
     display: block;
     width: 100%;
@@ -58,7 +58,7 @@ a:hover {
     transform: scale(0);
 }
 
-.top-menu li a:hover::after {
+.top-menu li a.nav-link:hover::after {
     transform: scale(1);
 }
 
@@ -67,5 +67,21 @@ a:hover {
 
 /* Header buttons */
 
-
 /* Header */
+
+/* Carousel */
+
+.my-carousel {
+    padding: 0;
+}
+
+.my-carousel .carousel-item {
+    display: flex;
+    max-height: 500px;
+}
+
+.my-carousel .carousel-item img {
+    object-fit: cover;
+}
+
+/* Carousel */
