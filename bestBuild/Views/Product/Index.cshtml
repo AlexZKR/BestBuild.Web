@@ -1,0 +1,7 @@
+@{
+    var categories = ViewData["Categories"] as IEnumerable<ProductCategory>;
+}
+@foreach (var item in categories)
+{
+    <p>@item.Name</p>
+}

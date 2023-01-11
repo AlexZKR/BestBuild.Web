@@ -37,8 +37,12 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 top-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Каталог</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-current="page"
+                            href="#">Каталог</a>
+
+                        @await Component.InvokeAsync("Categories")
+
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#">Новинки</a>
@@ -76,16 +80,15 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-current="page" href="#"><i
-                                class="fa-regular fa-user"></i></a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-current="page" href="#">
+                            <i class="fa-regular fa-user"></i></a>
                         <ul class="dropdown-menu">
-
                             <li class="dropdown-item">
                                 <a class="nav-link" aria-current="page" href="#"> <i
                                         class="fa-regular fa-address-card"></i> Профиль</a>
                             </li>
                         </ul>
-                    <li class="dropdown-item">
+                    <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#"> <i class="fa-solid fa-cart-shopping"></i>
                             Корзина</a>
                     </li>

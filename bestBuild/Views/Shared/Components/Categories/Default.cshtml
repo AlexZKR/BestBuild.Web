@@ -1,0 +1,11 @@
+@model IEnumerable<ProductCategory>
+
+<ul class="dropdown-menu">
+    @foreach (var item in Model)
+    {
+        <li class="dropdown-item">
+            <a class="nav-link" aria-current="page" href="#"> @item.Name</a>
+
+        </li>
+    }
+</ul>
