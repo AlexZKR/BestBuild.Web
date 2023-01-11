@@ -1,6 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using bestBuild.DAL.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection")));
 
 var app = builder.Build();
 

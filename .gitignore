@@ -9,6 +9,12 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.db
+*.db-shm
+*.db-wal
+*.jpg
+*.png
+/bestBuild.DAL/Migrations/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
