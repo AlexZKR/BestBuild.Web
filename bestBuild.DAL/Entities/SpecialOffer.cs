@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations;
+using bestBuild.DAL.Entities.Relationships;
 
-namespace bestBuild.DAL;
+namespace bestBuild.DAL.Entities;
 
 public class SpecialOffer
 {
     [Key]
-    public int ID { get; set; }
+    public int OfferId { get; set; }
 
     [Required]
     [DataType(DataType.Text)]
@@ -25,10 +26,7 @@ public class SpecialOffer
     //Image to be displayed in the carousel on main page
     public string Image { get; set; } = SD.NO_PHOTO;
 
-
     //Navigation
-    public List<Product> Products { get; set; } = null!;
-    public List<ProductCategory> ProductCategories { get; set; } = null!;
-
+    public List<Products_Offers> Products_Offers { get; set; } = null!;
 
 }

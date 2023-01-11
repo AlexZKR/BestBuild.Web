@@ -1,5 +1,6 @@
 
 using bestBuild.DAL.Data;
+using bestBuild.DAL.Entities;
 using bestBuild.DAL.Repositories.Interfaces;
 
 namespace bestBuild.DAL.Repositories;

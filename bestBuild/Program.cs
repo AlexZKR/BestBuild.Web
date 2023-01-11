@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using bestBuild.DAL.Data;
+using bestBuild.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,5 +21,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+DbInitializer.Seed(app);
 
 app.Run();

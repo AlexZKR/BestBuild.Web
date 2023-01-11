@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace bestBuild.DAL;
+namespace bestBuild.DAL.Entities;
 
 public class Client : IdentityUser
 {

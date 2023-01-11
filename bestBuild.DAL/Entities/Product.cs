@@ -1,7 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using bestBuild.DAL.Entities.Relationships;
 
-namespace bestBuild.DAL;
+namespace bestBuild.DAL.Entities;
 
 public class Product
 {
@@ -22,10 +23,16 @@ public class Product
     public string Image { get; set; } = SD.NO_PHOTO;
 
     //Navigation 
-    // public int CategoryId { get; set; }
-    // [ForeignKey("CategoryId")]
+
+    //Category
+    [ForeignKey("CategoryId")]
+    public int CategoryId { get; set; }
     public ProductCategory Category { get; set; } = null!;
-    public List<Order> Orders { get; set; } = null!;
-    public List<SpecialOffer> SpecialOffers { get; set; } = null!;
+
+    //Orders
+    public List<Products_Orders> Products_Orders { get; set; } = null!;
+
+    //Sp. Offers
+    public List<Products_Offers> Products_Offers { get; set; } = null!;
 
 }

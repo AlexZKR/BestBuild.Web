@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace bestBuild.DAL;
+namespace bestBuild.DAL.Entities;
 
 public class ProductCategory
 {
