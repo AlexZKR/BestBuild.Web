@@ -15,6 +15,7 @@ public class Product
     public string Description { get; set; } = "";
     [DataType(DataType.Currency)]
     public int Price { get; set; } = 0;
+    [Range(0, 1)]
     public int Quantity { get; set; } = 0;
     public double Discount { get; set; } = 0;
     public byte[] Image { get; set; } = null!;

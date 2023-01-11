@@ -14,6 +14,7 @@ public class ProductCategory
     [StringLength(500)]
     public string Description { get; set; } = "";
     [DataType(DataType.Currency)]
+    [Range(0, 1)]
     public double Discount { get; set; } = 0;
     public byte[] Image { get; set; } = null!;
 

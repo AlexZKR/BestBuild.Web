@@ -11,6 +11,7 @@ public class SpecialOffer
     [DataType(DataType.Text)]
     [StringLength(30)]
     public string Name { get; set; } = "";
+    [Range(0, 1)]
     public double Discount { get; set; } = 0;
 
     [Required]
