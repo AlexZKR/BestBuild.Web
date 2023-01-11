@@ -23,7 +23,7 @@ public class SpecialOffer
     public DateTime DateOfEnd { get; set; }
 
     //Image to be displayed in the carousel on main page
-    public byte[] Image { get; set; } = null!;
+    public string Image { get; set; } = SD.NO_PHOTO;
 
 
     //Navigation

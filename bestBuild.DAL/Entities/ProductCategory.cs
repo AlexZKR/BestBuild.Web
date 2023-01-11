@@ -5,7 +5,7 @@ namespace bestBuild.DAL;
 public class ProductCategory
 {
     [Key]
-    public int ID { get; set; }
+    public int CategoryId { get; set; }
     [Required]
     [DataType(DataType.Text)]
     [StringLength(30)]
@@ -16,7 +16,8 @@ public class ProductCategory
     [DataType(DataType.Currency)]
     [Range(0, 1)]
     public double Discount { get; set; } = 0;
-    public byte[] Image { get; set; } = null!;
+
+    public string Image { get; set; } = SD.NO_PHOTO;
 
     //Navigation
     public List<Product> Products { get; set; } = null!;
