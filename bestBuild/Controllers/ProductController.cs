@@ -14,6 +14,7 @@ public class ProductController : Controller
         this.context = context;
     }
 
+    //Get products list
     public async Task<IActionResult> Index()
     {
         ViewData["Categories"] = context.ProductCategories;

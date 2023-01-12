@@ -18,8 +18,8 @@ public class DbInitializer
                 context.Products.AddRange(
                     new Product
                     {
-                        Name = "TestProd1",
-                        Description = "Test desc1",
+                        Name = "Отвертка",
+                        Description = "Описание отвертки",
                         Price = 100,
                         Quantity = 50,
                         CategoryId = 1,
@@ -28,8 +28,8 @@ public class DbInitializer
                     },
                     new Product
                     {
-                        Name = "TestProd2",
-                        Description = "Test desc2",
+                        Name = "Гаечный ключ",
+                        Description = "Описание гаечного ключа",
                         Price = 101,
                         Quantity = 51,
                         CategoryId = 1,
@@ -37,8 +37,8 @@ public class DbInitializer
                     },
                     new Product
                     {
-                        Name = "TestProd3",
-                        Description = "Test desc3",
+                        Name = "Ножовка",
+                        Description = "Описание ножовки",
                         Price = 102,
                         Quantity = 52,
                         CategoryId = 1,
@@ -46,8 +46,8 @@ public class DbInitializer
                     },
                     new Product
                     {
-                        Name = "TestProd4",
-                        Description = "Test desc4",
+                        Name = "Штукатурка",
+                        Description = "Описание штукатурки",
                         Price = 104,
                         Quantity = 54,
                         CategoryId = 2,
@@ -56,8 +56,8 @@ public class DbInitializer
                     new Product
                     {
 
-                        Name = "TestProd5",
-                        Description = "Test desc5",
+                        Name = "Кирпичи",
+                        Description = "Описание кирпичей",
                         Price = 105,
                         Quantity = 55,
                         CategoryId = 2,
@@ -65,8 +65,8 @@ public class DbInitializer
                     },
                     new Product
                     {
-                        Name = "TestProd6",
-                        Description = "Test desc6",
+                        Name = "Доски",
+                        Description = "Описание досок",
                         Price = 106,
                         Quantity = 56,
                         CategoryId = 2,
@@ -80,14 +80,14 @@ public class DbInitializer
                 context.ProductCategories.AddRange(
                     new ProductCategory
                     {
-                        Name = "TestCat1",
-                        Description = "CatDesc1",
+                        Name = "Инструменты",
+                        Description = "Описание инструментов в наличии",
                         Discount = 0
                     },
                     new ProductCategory
                     {
-                        Name = "TestCat2",
-                        Description = "CatDesc2",
+                        Name = "Материалы",
+                        Description = "Описание материалов в наличии",
                         Discount = 0
                     }
                 );
