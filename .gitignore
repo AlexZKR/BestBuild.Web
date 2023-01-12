@@ -15,6 +15,7 @@
 *.jpg
 *.png
 /bestBuild.DAL/Migrations/
+Migrations/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
