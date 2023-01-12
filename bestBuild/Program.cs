@@ -11,7 +11,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection")));
 
-builder.Services.AddDefaultIdentity<ClientCred>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<bestBuildIdentityDbContext>();
+
+builder.Services.AddDbContext<bestBuildIdentityDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("bestBuildIdentityDbContextConnection")));
+
+builder.Services.AddDefaultIdentity<ClientCred>(options =>
+ options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<bestBuildIdentityDbContext>();
 
 var app = builder.Build();
 
