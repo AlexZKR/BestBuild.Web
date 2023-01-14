@@ -1,10 +1,5 @@
 @model Product
 
-@{
-    var discountSum = @Model.Price / 1 * @Model.Discount;
-    var discountedPrice = @Model.Price - discountSum;
-}
-
 <div class="prod-card">
     <a asp-controller="Product" asp-action="Index" asp-route-id="@Model.ProductId">
         <img src="~/Images/Products/@Model.Image" class="card-img-top " alt="@Model.Image">
@@ -17,7 +12,7 @@
             <div class="prod-price">
                 @if (@Model.Discount > 0)
                 {
-                    <small>@Model.Price</small> @discountedPrice.ToString("N2")
+                    <small>@Model.Price</small> @Model.DiscountedPrice.ToString("N2")
                 }
                 @if (@Model.Discount == 0)
                 {

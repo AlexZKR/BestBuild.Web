@@ -25,6 +25,10 @@ public class Product
     public int Quantity { get; set; } = 0;
     [Range(0, 1)]
     public double Discount { get; set; } = 0;
+    [NotMapped]
+    public double DiscountedPrice => Price - (Price / 1 * Discount);
+    [NotMapped]
+    public double DiscountSize => Price / 1 * Discount;
     public string Image { get; set; } = SD.NO_PHOTO;
 
     //Navigation 
