@@ -1,4 +1,4 @@
-/* Category card css */
+/* Product card css */
 
 .prod-card {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.06);
@@ -9,7 +9,7 @@
     box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75);
 }
 
-.prod-thumb a {
+.img-card-sizefx {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,10 +17,6 @@
     padding: 20px;
 }
 
-.prod-thumb img {
-    max-width: 100%;
-    max-height: 100%;
-}
 
 .prod-details {
     padding: 20px;

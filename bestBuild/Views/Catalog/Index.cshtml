@@ -1,3 +1,5 @@
 @model ProductCatalogViewModel
 @* Can implement product filter here to reconfigure this @Model *@
+
+<h2 class="display-2 m-4">@Model.ProductCategory.Name </h2>
 <partial name="ProductListPartial" model="@Model.Products" />
