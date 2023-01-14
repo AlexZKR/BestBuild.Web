@@ -1,0 +1,12 @@
+@model IEnumerable<ProductCategory>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-sm-6">
+                <partial name="CategoryCardPartial" model="@item" />
+            </div>
+        }
+    </div>
+</div>

@@ -22,6 +22,7 @@
         crossorigin="anonymous"></script>
 
     <link href="~/css/layout.css" rel="stylesheet" />
+    <link href="~/css/catCard.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -40,9 +41,9 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 top-menu">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" aria-current="page" aria-haspopup="true"
-                            asp-controller="Product" asp-action="Index">Каталог</a>
+                            asp-controller="Categories" asp-action="Index">Каталог</a>
 
-                        @await Component.InvokeAsync("Categories")
+                        @await Component.InvokeAsync("CategoriesNavbar")
 
                     </li>
                     <li class="nav-item">
@@ -154,7 +155,6 @@
     </footer>
 
     @await RenderSectionAsync("Scripts", required: false)
-
 </body>
 
 </html>

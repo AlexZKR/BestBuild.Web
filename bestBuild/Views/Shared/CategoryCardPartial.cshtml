@@ -1,0 +1,15 @@
+@model ProductCategory
+<div class="cat-card">
+    <a asp-controller="Catalog" asp-action="Index" asp-route-id="@Model.CategoryId"><img class="card-img-top"
+            src="~/Images/Categories/@Model.Image" alt=""></a>
+    <div class="cat-details">
+        <h4><a asp-controller="Catalog" asp-action="Index" asp-route-id="@Model.CategoryId">@Model.Name</a></h4>
+        <p>@Model.Description</p>
+
+        <div class="cat-bottom-details d-flex justify-content-between">
+            <div class="cat-links">
+                <a asp-controller="Catalog" asp-action="Index" asp-route-id="@Model.CategoryId">Перейти к каталогу</a>
+            </div>
+        </div>
+    </div>
+</div>

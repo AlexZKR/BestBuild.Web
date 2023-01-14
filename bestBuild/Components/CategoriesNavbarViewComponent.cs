@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace bestBuild.Components;
 
-public class CategoriesViewComponent : ViewComponent
+public class CategoriesNavbarViewComponent : ViewComponent
 {
     private readonly AppDbContext context;
 
-    public CategoriesViewComponent(AppDbContext context)
+    public CategoriesNavbarViewComponent(AppDbContext context)
     {
         this.context = context;
     }

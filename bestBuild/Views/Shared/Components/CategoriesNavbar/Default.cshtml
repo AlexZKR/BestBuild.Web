@@ -4,8 +4,8 @@
     @foreach (var item in Model)
     {
         <li class="dropdown-item">
-            <a class="nav-link" aria-current="page" href="#"> @item.Name</a>
-
+            <a class="nav-link" aria-current="page" asp-controller="Catalog" asp-action="Index"
+            asp-route-id="@item.CategoryId"> @item.Name</a>
         </li>
     }
 </ul>

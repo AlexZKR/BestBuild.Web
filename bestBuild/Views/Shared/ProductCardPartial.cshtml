@@ -1,0 +1,18 @@
+@model Product
+<div class="prod-card">
+    <div class="prod-thumb">
+        <a href="#"><img src="~/Images/Products/@Model.Image" alt=""></a>
+    </div>
+    <div class="prod-details">
+        <h4><a asp-controller="Product" asp-action="Index" asp-route-id="@Model.ProductId">@Model.Name</a></h4>
+        <p>@Model.Description</p>
+    </div>
+    <div class="prod-bottom-details d-flex justify-content-between">
+        <div class="prod-price">
+            @Model.Price
+        </div>
+        <div class="prod-links">
+            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+    </div>
+</div>

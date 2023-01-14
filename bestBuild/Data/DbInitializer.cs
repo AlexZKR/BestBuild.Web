@@ -23,8 +23,9 @@ public class DbInitializer
                         Price = 100,
                         Quantity = 50,
                         CategoryId = 1,
-                        Discount = 0.10
-
+                        Discount = 0.10,
+                        Brand = "Bosch",
+                        Image = "prod_scrdrw.jpg"
                     },
                     new Product
                     {
@@ -33,7 +34,9 @@ public class DbInitializer
                         Price = 101,
                         Quantity = 51,
                         CategoryId = 1,
-                        Discount = 0.11
+                        Discount = 0.11,
+                        Image = "prod_wrench.jpg",
+                        Brand = "Makita"
                     },
                     new Product
                     {
@@ -42,7 +45,9 @@ public class DbInitializer
                         Price = 102,
                         Quantity = 52,
                         CategoryId = 1,
-                        Discount = 0.12
+                        Discount = 0.12,
+                        Image = "prod_saw.jpg",
+                        Brand = "Bosch"
                     },
                     new Product
                     {
@@ -51,7 +56,9 @@ public class DbInitializer
                         Price = 104,
                         Quantity = 54,
                         CategoryId = 2,
-                        Discount = 0.14
+                        Discount = 0.14,
+                        Image = "prod_plaster.jpg",
+                        Brand = "Lux"
                     },
                     new Product
                     {
@@ -62,6 +69,8 @@ public class DbInitializer
                         Quantity = 55,
                         CategoryId = 2,
                         Discount = 0.15,
+                        Image = "prod_bricks.jpg",
+                        Brand = "Lux"
                     },
                     new Product
                     {
@@ -70,7 +79,9 @@ public class DbInitializer
                         Price = 106,
                         Quantity = 56,
                         CategoryId = 2,
-                        Discount = 0.16
+                        Discount = 0.16,
+                        Image = "prod_planks.jpg",
+                        Brand = "Lux"
                     }
                 );
             }
@@ -82,13 +93,13 @@ public class DbInitializer
                     {
                         Name = "Инструменты",
                         Description = "Описание инструментов в наличии",
-                        Discount = 0
+                        Image = "cat_tools.jpg"
                     },
                     new ProductCategory
                     {
                         Name = "Материалы",
                         Description = "Описание материалов в наличии",
-                        Discount = 0
+                        Image = "cat_materials.jpg"
                     }
                 );
             }

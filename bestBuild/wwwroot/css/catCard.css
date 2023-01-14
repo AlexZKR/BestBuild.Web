@@ -1,0 +1,58 @@
+/* Category card css */
+
+.cat-card {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.06);
+    transition: all .3s;
+
+}
+
+.cat-card:hover {
+    box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75);
+}
+
+
+.cat-thumb a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    padding: 20px;
+}
+
+.cat-thumb img {
+    max-width: 120%;
+    max-height: 120%;
+}
+
+.cat-details {
+    padding: 20px;
+}
+
+.cat-details h4 a {
+    font-weight: 500;
+    display: block;
+    height: 60px;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.cat-details p {
+    font-size: 15px;
+    margin-bottom: 20px;
+    color: #999;
+    height: 44px;
+    overflow: hidden;
+}
+
+.cat-bottom-details {
+    overflow: hidden;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+
+}
+
+.cat-discount {
+    font-size: 18px;
+    color: #ee6e73;
+    font-weight: 600;
+}

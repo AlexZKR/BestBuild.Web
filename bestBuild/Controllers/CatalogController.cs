@@ -1,0 +1,26 @@
+using bestBuild.DAL.Data;
+using bestBuild.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+
+namespace bestBuild.Controllers;
+[Route("Catalog")]
+public class CatalogController : Controller
+{
+    private readonly AppDbContext context;
+
+    public CatalogController(AppDbContext context)
+    {
+        this.context = context;
+    }
+    [Route("{id:int}")]
+    public async Task<IActionResult> Index(int? page, int id)
+    {
+        var ProdCatVm = new ProductCatalogViewModel
+        {
+            Products = await context.Products.Where(c => c.CategoryId == id).OrderBy(n => n.Name).ToListAsync(),
+        };
+        return View(ProdCatVm);
+    }
+}
