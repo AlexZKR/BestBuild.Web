@@ -6,8 +6,9 @@
 }
 
 <div class="prod-card">
-    <a asp-controller="Product" asp-action="Index" asp-route-id="@Model.ProductId"><img
-            src="~/Images/Products/@Model.Image" class="card-img-top " alt=""></a>
+    <a asp-controller="Product" asp-action="Index" asp-route-id="@Model.ProductId">
+        <img src="~/Images/Products/@Model.Image" class="card-img-top " alt="@Model.Image">
+    </a>
     <div class="prod-details">
         <h4><a asp-controller="Product" asp-action="Index" asp-route-id="@Model.ProductId">@Model.Name</a></h4>
         <p>@Model.Description</p>
