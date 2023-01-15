@@ -16,6 +16,7 @@ public class CartViewComponent : ViewComponent
 
     public IViewComponentResult Invoke()
     {
+
         cart = HttpContext.Session.Get<Cart>("cart");
         return View(cart);
     }

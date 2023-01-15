@@ -5,7 +5,7 @@ using bestBuild.DAL.Repositories.Interfaces;
 
 namespace bestBuild.DAL.Repositories;
 
-public class ProductRepository : GenericRepository<Product>, IProductRepository
+public class ProductRepository : GenericRepository<ProductBase>, IProductRepository
 {
     private readonly AppDbContext context;
 

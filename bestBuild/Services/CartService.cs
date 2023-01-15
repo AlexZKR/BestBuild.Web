@@ -26,13 +26,13 @@ namespace bestBuild.Services
             return cart;
         }
 
-        public override void AddToCart(Product product)
+        public override void AddToCart(ProductBase product)
         {
             base.AddToCart(product);
             Session?.Set<CartService>(sessionKey, this);
         }
 
-        public override void AddOne(Product product)
+        public override void AddOne(ProductBase product)
         {
             base.AddOne(product);
             Session?.Set<CartService>(sessionKey, this);

@@ -2,9 +2,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using bestBuild.DAL.Entities.Relationships;
 
-namespace bestBuild.DAL.Entities;
+namespace bestBuild.DAL.Entities.Products;
 
-public class Product
+public class ProductBase
 {
     [Key]
     public int ProductId { get; set; }

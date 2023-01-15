@@ -16,7 +16,7 @@ public class DbInitializer
             if (!context.Products.Any())
             {
                 context.Products.AddRange(
-                    new Product
+                    new ProductBase
                     {
                         Name = "Отвертка",
                         Description = "Описание отвертки",
@@ -27,7 +27,7 @@ public class DbInitializer
                         Brand = "Bosch",
                         Image = "prod_scrdrw.jpg"
                     },
-                    new Product
+                    new ProductBase
                     {
                         Name = "Гаечный ключ",
                         Description = "Описание гаечного ключа",
@@ -38,7 +38,7 @@ public class DbInitializer
                         Image = "prod_wrench.jpg",
                         Brand = "Makita"
                     },
-                    new Product
+                    new ProductBase
                     {
                         Name = "Ножовка",
                         Description = "Описание ножовки",
@@ -49,7 +49,7 @@ public class DbInitializer
                         Image = "prod_saw.jpg",
                         Brand = "Bosch"
                     },
-                    new Product
+                    new ProductBase
                     {
                         Name = "Штукатурка",
                         Description = "Описание штукатурки",
@@ -60,7 +60,7 @@ public class DbInitializer
                         Image = "prod_plaster.jpg",
                         Brand = "Lux"
                     },
-                    new Product
+                    new ProductBase
                     {
 
                         Name = "Кирпичи",
@@ -72,7 +72,7 @@ public class DbInitializer
                         Image = "prod_bricks.jpg",
                         Brand = "Lux"
                     },
-                    new Product
+                    new ProductBase
                     {
                         Name = "Доски",
                         Description = "Описание досок",
