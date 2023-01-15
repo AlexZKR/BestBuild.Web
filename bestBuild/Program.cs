@@ -15,8 +15,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection")));
 
 
-builder.Services.AddDbContext<bestBuildIdentityDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("bestBuildIdentityDbContextConnection")));
+builder.Services.AddDbContext<bestBuildIdentityDbContext>(
+    options => options.UseLazyLoadingProxies()
+    .UseSqlite(builder.Configuration.GetConnectionString("bestBuildIdentityDbContextConnection")));
 
 builder.Services.AddDefaultIdentity<ClientCred>(options =>
  options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<bestBuildIdentityDbContext>();

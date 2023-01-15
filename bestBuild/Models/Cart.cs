@@ -6,9 +6,21 @@ public class Cart
 {
     public Dictionary<int, CartItem> Items { get; set; }
     public int Count => Items.Sum(item => item.Value.Quantity);
-    public double Cost => Items.Sum(item => item.Value.Product.Discount > 0
-        ? item.Value.Product.DiscountedPrice
-        : item.Value.Product.Price);
+    public double Cost
+    {
+        get
+        {
+            double sum = 0;
+            foreach (var item in Items.Values)
+            {
+                if (item.Product.Discount > 0)
+                    sum += item.Product.DiscountedPrice * item.Quantity;
+                else
+                    sum += item.Product.Price * item.Quantity;
+            }
+            return sum;
+        }
+    }
     public Cart()
     {
         Items = new Dictionary<int, CartItem>();

@@ -1,6 +1,7 @@
 
 using bestBuild.DAL.Data;
 using bestBuild.DAL.Entities;
+using bestBuild.DAL.Data.Enums;
 
 namespace bestBuild.Data;
 
@@ -18,71 +19,113 @@ public class DbInitializer
                 context.Products.AddRange(
                     new Product
                     {
-                        Name = "Отвертка",
-                        Description = "Описание отвертки",
+                        Name = "Петля 1",
+                        Description = "Петля накладная выполнена из холоднокатаной стали. С чашкой 35 мм, имеет механизм быстрого монтажа clip on и регулировочный демпфер, обеспечивающий плавное закрывание. Петля предназначена для установки на мебельный фасад с перекрытием торцов корпуса со стороны фасада.",
                         Price = 100,
                         Quantity = 50,
                         CategoryId = 1,
                         Discount = 0.10,
-                        Brand = "Bosch",
-                        Image = "prod_scrdrw.jpg"
+                        Brand = Brands.AKS_LIGHT,
+                        Image = "prod_scrdrw.jpg",
+                        Properties = new List<ProductProperty>
+                        {
+                            new ProductProperty
+                            {
+                                Name = "Присадка",
+                                Value = "45",
+                                MeasureUnit = "mm"
+                            },
+                            new ProductProperty
+                            {
+                                Name = "Крепление",
+                                Value = "Евровинт",
+                                MeasureUnit = "mm"
+                            },
+                            new ProductProperty
+                            {
+                                Name = "Вид материала",
+                                Value = "ЛДСП",
+                                MeasureUnit = ""
+                            },
+                        }
                     },
                     new Product
                     {
-                        Name = "Гаечный ключ",
-                        Description = "Описание гаечного ключа",
+                        Name = "Петля 2",
+                        Description = "Петля накладная выполнена из холоднокатаной стали, с чашкой 35 мм, имеет механизм надвижного монтажа slide on и регулировочный винт с размером по резьбе в 10 мм. Петля предназначена для установки на фасад с перекрытием всех стенок корпуса примыкания к фасаду. В зависимости от категории AKS Light, AKS, AKS Plus - запас прочности от 50 000 до 80 000 циклов на фасаде 1000x600 или 6,4 кг на пару петель. Вес петель от 52 до 60 гр.",
                         Price = 101,
                         Quantity = 51,
                         CategoryId = 1,
                         Discount = 0.11,
                         Image = "prod_wrench.jpg",
-                        Brand = "Makita"
-                    },
-                    new Product
-                    {
-                        Name = "Ножовка",
-                        Description = "Описание ножовки",
-                        Price = 102,
-                        Quantity = 52,
-                        CategoryId = 1,
-                        Discount = 0.12,
-                        Image = "prod_saw.jpg",
-                        Brand = "Bosch"
-                    },
-                    new Product
-                    {
-                        Name = "Штукатурка",
-                        Description = "Описание штукатурки",
-                        Price = 104,
-                        Quantity = 54,
-                        CategoryId = 2,
-                        Discount = 0.14,
-                        Image = "prod_plaster.jpg",
-                        Brand = "Lux"
-                    },
-                    new Product
-                    {
-
-                        Name = "Кирпичи",
-                        Description = "Описание кирпичей",
-                        Price = 105,
-                        Quantity = 55,
-                        CategoryId = 2,
-                        Discount = 0.15,
-                        Image = "prod_bricks.jpg",
-                        Brand = "Lux"
-                    },
-                    new Product
-                    {
-                        Name = "Доски",
-                        Description = "Описание досок",
-                        Price = 106,
-                        Quantity = 56,
-                        CategoryId = 2,
-                        Discount = 0.16,
-                        Image = "prod_planks.jpg",
-                        Brand = "Lux"
+                        Brand = Brands.Blum,
+                        Properties = new List<ProductProperty>
+                        {
+                            new ProductProperty
+                            {
+                                Name = "Присадка",
+                                Value = "55",
+                                MeasureUnit = "mm"
+                            },
+                            new ProductProperty
+                            {
+                                Name = "Крепление",
+                                Value = "Винт",
+                                MeasureUnit = "mm"
+                            },
+                            new ProductProperty
+                            {
+                                Name = "Вид материала",
+                                Value = "ДСП",
+                                MeasureUnit = ""
+                            },
+                        }
                     }
+                    // new Product
+                    // {
+                    //     Name = "Ножовка",
+                    //     Description = "Описание ножовки",
+                    //     Price = 102,
+                    //     Quantity = 52,
+                    //     CategoryId = 1,
+                    //     Discount = 0.12,
+                    //     Image = "prod_saw.jpg",
+                    //     Brand = "Bosch"
+                    // },
+                    // new Product
+                    // {
+                    //     Name = "Штукатурка",
+                    //     Description = "Описание штукатурки",
+                    //     Price = 104,
+                    //     Quantity = 54,
+                    //     CategoryId = 2,
+                    //     Discount = 0.14,
+                    //     Image = "prod_plaster.jpg",
+                    //     Brand = "Lux"
+                    // },
+                    // new Product
+                    // {
+
+                    //     Name = "Кирпичи",
+                    //     Description = "Описание кирпичей",
+                    //     Price = 105,
+                    //     Quantity = 55,
+                    //     CategoryId = 2,
+                    //     Discount = 0.15,
+                    //     Image = "prod_bricks.jpg",
+                    //     Brand = "Lux"
+                    // },
+                    // new Product
+                    // {
+                    //     Name = "Доски",
+                    //     Description = "Описание досок",
+                    //     Price = 106,
+                    //     Quantity = 56,
+                    //     CategoryId = 2,
+                    //     Discount = 0.16,
+                    //     Image = "prod_planks.jpg",
+                    //     Brand = "Lux"
+                    // }
                 );
             }
 
@@ -91,15 +134,15 @@ public class DbInitializer
                 context.ProductCategories.AddRange(
                     new ProductCategory
                     {
-                        Name = "Инструменты",
-                        Description = "Описание инструментов в наличии",
-                        Image = "cat_tools.jpg"
+                        Name = "Петли мебельные",
+                        Description = "Основная  задача любой мебельной петли – это мягкое, бесшумное, легкое и плавное открывание/закрывание фасада или двери.",
+                        Image = "cat_hinges.jpg"
                     },
                     new ProductCategory
                     {
-                        Name = "Материалы",
-                        Description = "Описание материалов в наличии",
-                        Image = "cat_materials.jpg"
+                        Name = "Системы и элементы выдвижения",
+                        Description = "Ни одна кухня, комната, офис не может обойтись без выдвижных ящиков. За эту функцию отвечают системы  и элементы выдвижения (направляющие). Это логично, так как они обеспечивают скольжение/выдвижение самих ящиков при открывании и закрывании.  ",
+                        Image = "cat_system.jpg"
                     }
                 );
             }

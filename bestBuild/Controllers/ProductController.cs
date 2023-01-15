@@ -20,7 +20,7 @@ public class ProductController : Controller
     public async Task<IActionResult> Index(int id)
     {
         if (context.Products == null) return Problem("context.Products is null");
-        var product = await context.Products.Where(p => p.ProductId == id).FirstOrDefaultAsync();
+        var product = await context.Products.Where(p => p.ProductId == id).Include(p => p.Properties).FirstOrDefaultAsync();
         return View(product);
     }
 }
