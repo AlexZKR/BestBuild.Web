@@ -11,6 +11,7 @@ public class Product
     [Required]
     [DataType(DataType.Text)]
     [StringLength(30)]
+    [Display(Name = "Наименование товара")]
     public string Name { get; set; } = "";
 
     [DataType(DataType.Text)]

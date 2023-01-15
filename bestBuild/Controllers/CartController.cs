@@ -20,13 +20,13 @@ public class CartController : Controller
         this.cart = cart;
     }
     [Route("Cart")]
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
         cart = HttpContext.Session.Get<Cart>(cartKey);
         return View(cart);
     }
     [Authorize]
-    [Route("{id:int}/{returnUrl}")]
+    [Route("/[action]/{id:int}")]
     public async Task<IActionResult> Add(int id, string returnUrl)
     {
         cart = HttpContext.Session.Get<Cart>(cartKey);
@@ -37,6 +37,19 @@ public class CartController : Controller
             HttpContext.Session.Set<Cart>(cartKey, cart);
         }
         return Redirect(returnUrl);
+    }
+
+    public async Task<IActionResult> AddOneToCart(int id)
+    {
+        cart = HttpContext.Session.Get<Cart>(cartKey);
+        var item = await context.Products.FindAsync(id);
+        if (item != null)
+        {
+            cart.AddOne(item);
+            HttpContext.Session.Set<Cart>(cartKey, cart);
+            return View();
+        }
+        return Problem();
     }
 
     public IActionResult Delete(int id)

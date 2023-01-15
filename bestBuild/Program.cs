@@ -31,6 +31,14 @@ builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<Cart>(sp => CartService.GetCart(sp));
 
+builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+            });
+
+builder.Services.ConfigureApplicationCookie(options => options.LoginPath = "/Identity/Account/Login");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
