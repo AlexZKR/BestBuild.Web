@@ -26,6 +26,12 @@ public class Cart
             });
     }
 
+    public virtual void AddOne(Product product)
+    {
+        if (Items.ContainsKey(product.ProductId))
+            Items[product.ProductId].Quantity++;
+    }
+
     public virtual void RemoveFromCart(int id)
     {
         Items.Remove(id);

@@ -31,6 +31,15 @@ namespace bestBuild.Services
             base.AddToCart(product);
             Session?.Set<CartService>(sessionKey, this);
         }
+
+        public override void AddOne(Product product)
+        {
+            base.AddOne(product);
+            Session?.Set<CartService>(sessionKey, this);
+
+        }
+
+
         public override void RemoveFromCart(int id)
         {
             base.RemoveFromCart(id);
