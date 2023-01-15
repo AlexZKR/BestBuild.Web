@@ -23,6 +23,11 @@ public class AppDbContext : DbContext
 
     }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+
+    }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         //Configurating many-to-many relationship tables

@@ -35,12 +35,12 @@
                                 @foreach (var item in @Model.Properties)
                                 {
                                     <tr>
-                                        <td width="390">@item.Name @if (@item.MeasureUnit != null)
-                                            {
-                                                <div>,@item.MeasureUnit</div>
-                                            }
+                                        <td width="390">
+                                            @item.Name
                                         </td>
-                                        <td>@item.Value</td>
+                                        <td>
+                                            @item.Value @item.MeasureUnit
+                                        </td>
                                     </tr>
                                 }
                             </tbody>

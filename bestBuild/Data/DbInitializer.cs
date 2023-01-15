@@ -26,7 +26,7 @@ public class DbInitializer
                         CategoryId = 1,
                         Discount = 0.10,
                         Brand = Brands.AKS_LIGHT,
-                        Image = "prod_scrdrw.jpg",
+                        Image = "prod_h1.jpg",
                         Properties = new List<ProductProperty>
                         {
                             new ProductProperty
@@ -39,7 +39,7 @@ public class DbInitializer
                             {
                                 Name = "Крепление",
                                 Value = "Евровинт",
-                                MeasureUnit = "mm"
+                                MeasureUnit = ""
                             },
                             new ProductProperty
                             {
@@ -57,7 +57,7 @@ public class DbInitializer
                         Quantity = 51,
                         CategoryId = 1,
                         Discount = 0.11,
-                        Image = "prod_wrench.jpg",
+                        Image = "prod_h2.jpg",
                         Brand = Brands.Blum,
                         Properties = new List<ProductProperty>
                         {
@@ -71,7 +71,7 @@ public class DbInitializer
                             {
                                 Name = "Крепление",
                                 Value = "Винт",
-                                MeasureUnit = "mm"
+                                MeasureUnit = ""
                             },
                             new ProductProperty
                             {
