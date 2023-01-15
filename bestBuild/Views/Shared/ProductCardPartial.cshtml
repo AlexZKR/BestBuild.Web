@@ -5,7 +5,7 @@
     var returnUrl = request.Path + request.QueryString.ToUriComponent();
 }
 
-<div class="prod-card">
+<div class="prod-card d-3">
     <a asp-controller="Product" asp-action="Index" asp-route-id="@Model.ProductId">
         <img src="~/Images/Products/@Model.Image" class="card-img-top " alt="@Model.Image">
     </a>
@@ -17,7 +17,7 @@
             <div class="prod-price">
                 @if (@Model.Discount > 0)
                 {
-                            <small>@Model.Price</small> @Model.DiscountedPrice.ToString("N2")
+                    <small>@Model.Price</small> @Model.DiscountedPrice.ToString("N2")
                 }
                 @if (@Model.Discount == 0)
                 {
