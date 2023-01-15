@@ -1,0 +1,39 @@
+@model bestBuild.Models.Cart
+@{
+    ViewData["Title"] = "Корзина";
+}
+<h1>Корзина</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Items.Count)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items.Values)
+        {
+            <tr>
+                <td>
+                    <img src="~/Images/Products/@item.Product.Image" alt="No image" width="100" />
+                </td>
+                <td>
+                    @Html.DisplayFor(m=>@item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => @item.Quantity)
+                </td>
+                <td>
+                    <a asp-controller="Cart" asp-action="Delete" asp-route-id="@item.Product.ProductId"
+                    class="btn btn-outline-danger">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

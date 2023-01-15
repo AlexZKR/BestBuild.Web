@@ -62,8 +62,11 @@ a:hover {
     transform: scale(1);
 }
 
-/* Header buttons */
-
+/* Cart */
+.cart {
+    text-decoration: none;
+    display: block;
+}
 
 /* Header buttons */
 

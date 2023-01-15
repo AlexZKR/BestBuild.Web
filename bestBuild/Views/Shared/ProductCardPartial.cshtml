@@ -1,5 +1,10 @@
 @model Product
 
+@{
+    var request = ViewContext.HttpContext.Request;
+    var returnUrl = request.Path + request.QueryString.ToUriComponent();
+}
+
 <div class="prod-card">
     <a asp-controller="Product" asp-action="Index" asp-route-id="@Model.ProductId">
         <img src="~/Images/Products/@Model.Image" class="card-img-top " alt="@Model.Image">
@@ -21,7 +26,10 @@
 
             </div>
             <div class="prod-links">
-                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.ProductId"
+                    asp-route-returnUrl="@returnUrl" class="btn btn-primary btn-rounded">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
             </div>
         </div>
     </div>

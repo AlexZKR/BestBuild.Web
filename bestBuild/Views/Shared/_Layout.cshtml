@@ -86,8 +86,7 @@
                         <partial name="_LoginPartial" />
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#"> <i class="fa-solid fa-cart-shopping"></i>
-                            Корзина</a>
+                        @await Component.InvokeAsync("Cart")
                     </li>
                 </ul>
             </div>

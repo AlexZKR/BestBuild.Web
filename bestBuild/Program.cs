@@ -3,6 +3,8 @@ using bestBuild.DAL.Data;
 using bestBuild.Data;
 using Microsoft.AspNetCore.Identity;
 using bestBuild.Areas.Identity.Data;
+using bestBuild.Models;
+using bestBuild.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,16 @@ builder.Services.AddDbContext<bestBuildIdentityDbContext>(options =>
 builder.Services.AddDefaultIdentity<ClientCred>(options =>
  options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<bestBuildIdentityDbContext>();
 
+
+builder.Services.AddSession(opt =>
+    {
+        opt.Cookie.HttpOnly = true;
+        opt.Cookie.IsEssential = true;
+    });
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<Cart>(sp => CartService.GetCart(sp));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,7 +46,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 
