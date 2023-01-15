@@ -1,4 +1,4 @@
-@model ProductBase
+@model Product
 
 @{
     var request = ViewContext.HttpContext.Request;
@@ -17,7 +17,7 @@
             <div class="prod-price">
                 @if (@Model.Discount > 0)
                 {
-                        <small>@Model.Price</small> @Model.DiscountedPrice.ToString("N2")
+                            <small>@Model.Price</small> @Model.DiscountedPrice.ToString("N2")
                 }
                 @if (@Model.Discount == 0)
                 {

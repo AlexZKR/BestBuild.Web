@@ -4,6 +4,6 @@ namespace bestBuild.Models;
 
 public class CartItem
 {
-    public ProductBase Product { get; set; } = null!;
+    public Product Product { get; set; } = null!;
     public int Quantity { get; set; } = 0;
 }

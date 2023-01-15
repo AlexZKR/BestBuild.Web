@@ -2,15 +2,16 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using bestBuild.DAL.Entities.Relationships;
 
-namespace bestBuild.DAL.Entities.Products;
+namespace bestBuild.DAL.Entities;
 
-public class ProductBase
+public class Product
 {
     [Key]
     public int ProductId { get; set; }
     [Required]
     [DataType(DataType.Text)]
     [StringLength(30)]
+    [Display(Name = "Наименование товара")]
     public string Name { get; set; } = "";
 
     [DataType(DataType.Text)]

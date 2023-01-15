@@ -7,7 +7,7 @@ namespace bestBuild.DAL.Data;
 
 public class AppDbContext : DbContext
 {
-    public DbSet<ProductBase> Products { get; set; } = null!;
+    public DbSet<Product> Products { get; set; } = null!;
     public DbSet<Order> Orders { get; set; } = null!;
     public DbSet<ProductCategory> ProductCategories { get; set; } = null!;
     public DbSet<SpecialOffer> SpecialOffers { get; set; } = null!;

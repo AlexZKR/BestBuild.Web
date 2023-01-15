@@ -4,7 +4,7 @@ namespace bestBuild.DAL.Entities.Relationships;
 public class Products_Offers
 {
     public int ProductId { get; set; }
-    public ProductBase Product { get; set; } = null!;
+    public Product Product { get; set; } = null!;
 
     public int OfferId { get; set; }
     public SpecialOffer Offer { get; set; } = null!;
