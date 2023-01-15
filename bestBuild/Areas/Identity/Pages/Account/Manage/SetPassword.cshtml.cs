@@ -50,9 +50,9 @@ namespace bestBuild.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [StringLength(100, ErrorMessage = "{0} должен быть длинной от {2} до {1} знаков.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Новый пароль")]
+            [Display(Name = "New password")]
             public string NewPassword { get; set; }
 
             /// <summary>
@@ -60,8 +60,8 @@ namespace bestBuild.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Подтвердите новый пароль")]
-            [Compare("NewPassword", ErrorMessage = "Пароли не совпадают.")]
+            [Display(Name = "Confirm new password")]
+            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -107,7 +107,7 @@ namespace bestBuild.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Пароль установлен.";
+            StatusMessage = "Your password has been set.";
 
             return RedirectToPage();
         }

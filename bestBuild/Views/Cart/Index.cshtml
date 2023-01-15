@@ -1,130 +1,39 @@
 @model bestBuild.Models.Cart
-
-<section class="h-100" style="background-color: #d2c9ff;">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12">
-                <div class="card card-registration card-registration-2" style="border-radius: 15px;">
-                    <div class="card-body p-0">
-                        <div class="row g-0">
-                            <div class="col-lg-8">
-                                <div class="p-5">
-                                    <div class="d-flex justify-content-between align-items-center mb-5">
-                                        <h1 class="fw-bold mb-0 text-black">Корзина товаров</h1>
-                                        <h6 class="mb-0 text-muted">Количество: @Model.Count</h6>
-                                    </div>
-                                    @foreach (var item in @Model.Items)
-                                    {
-
-                                        <hr class="my-4">
-
-                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                            <div class="col-md-2 col-lg-2 col-xl-2">
-                                                <img src="~/Images/Products/@item.Value.Product.Image"
-                                                class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                            </div>
-                                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                                <h6 class="text-muted">Наименование товара</h6>
-                                                <h6 class="text-black mb-0">@item.Value.Product.Name</h6>
-                                            </div>
-                                            <div class="col-md-3 col-lg-3 col-xl-3">
-
-                                                <div class=" d-flex justify-content-between align-items-center">
-                                                    <button class="btn btn-link px-2">
-                                                        <i class="fas fa-minus"></i>
-                                                    </button>
-                                                    <h6 class="text-black mb-0">@item.Value.Quantity</h6>
-                                                    <button class="btn btn-link px-2" asp-controller="Cart"
-                                                    asp-action="AddOneToCart"
-                                                    asp-route-id="@item.Value.Product.ProductId">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                @if (@item.Value.Product.Discount > 0)
-                                                {
-                                                    <div class="col-md-9 col-lg-9 col-xl-9">
-                                                        <h6 class="text-muted">Цена без скидки</h6>
-                                                        <h6 class="text-black mb-0">@item.Value.Product.Price</h6>
-                                                    </div>
-                                                    <div class="col-md-9 col-lg-9 col-xl-9">
-                                                        <h6 class="text-muted">Цена со скидкой</h6>
-                                                        <h6 class="text-black mb-0">
-                                                            @item.Value.Product.DiscountedPrice.ToString("N2")</h6>
-                                                    </div>
-                                                }
-                                                @if (@item.Value.Product.Discount == 0)
-                                                {
-                                                    @item.Value.Product.Price
-                                                }
-                                            </div>
-
-                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                                <a asp-controller="Cart" asp-action="Delete"
-                                                asp-route-id="@item.Value.Product.ProductId" class="text-muted"><i
-                                                    class="fas fa-times"></i></a>
-                                            </div>
-                                        </div>
-
-                                        <hr class="my-4">
-                                    }
-
-
-                                    <div class="pt-5">
-                                        <h6 class="mb-0"><a asp-controller="Categories" asp-action="Index"
-                                                class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>В
-                                                каталог</a></h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 bg-grey">
-                                <div class="p-5">
-                                    <h3 class="fw-bold mb-5 mt-2 pt-1">Итог</h3>
-                                    <hr class="my-4">
-
-                                    <div class="d-flex justify-content-between mb-4">
-                                        <h5 class="text-uppercase">Количество @Model.Count</h5>
-                                        <h5></h5>
-                                    </div>
-
-                                    <h5 class="text-uppercase mb-3">Доставка</h5>
-
-                                    <div class="mb-4 pb-2">
-                                        <select class="select">
-                                            <option value="1">Standard-Delivery- €5.00</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                            <option value="4">Four</option>
-                                        </select>
-                                    </div>
-
-                                    <h5 class="text-uppercase mb-3">Комментарии к заказу:</h5>
-
-                                    <div class="mb-5">
-                                        <div class="form-outline">
-                                            <input type="text" id="form3Examplea2"
-                                                class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Examplea2">Enter your code</label>
-                                        </div>
-                                    </div>
-
-                                    <hr class="my-4">
-
-                                    <div class="d-flex justify-content-between mb-5">
-                                        <h5 class="text-uppercase">Итоговая цена</h5>
-                                        <h5>@Model.Cost.ToString("N2") руб.</h5>
-                                    </div>
-
-                                    <button type="button" class="btn btn-dark btn-block btn-lg"
-                                        data-mdb-ripple-color="dark">Оформить заказ</button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@{
+    ViewData["Title"] = "Корзина";
+}
+<h1>Корзина</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Items.Count)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items.Values)
+        {
+            <tr>
+                <td>
+                    <img src="~/Images/Products/@item.Product.Image" alt="No image" width="100" />
+                </td>
+                <td>
+                    @Html.DisplayFor(m=>@item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => @item.Quantity)
+                </td>
+                <td>
+                    <a asp-controller="Cart" asp-action="Delete" asp-route-id="@item.Product.ProductId"
+                    class="btn btn-outline-danger">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

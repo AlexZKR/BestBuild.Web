@@ -14,7 +14,7 @@ public class Cart
         Items = new Dictionary<int, CartItem>();
     }
 
-    public virtual void AddToCart(ProductBase product)
+    public virtual void AddToCart(Product product)
     {
         if (Items.ContainsKey(product.ProductId))
             Items[product.ProductId].Quantity++;
@@ -26,7 +26,7 @@ public class Cart
             });
     }
 
-    public virtual void AddOne(ProductBase product)
+    public virtual void AddOne(Product product)
     {
         if (Items.ContainsKey(product.ProductId))
             Items[product.ProductId].Quantity++;
