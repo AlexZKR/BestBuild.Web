@@ -30,7 +30,6 @@ namespace bestBuild.Areas.Identity.Pages.Account.Manage
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
-        public string Username { get; set; }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -56,17 +55,25 @@ namespace bestBuild.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Phone]
+            [Display(Name = "Имя")]
+            public string UserName { get; set; }
+
+            [Display(Name = "Фамилия")]
+            public string UserLastName { get; set; }
             [Display(Name = "Номер телефона")]
             public string PhoneNumber { get; set; }
+            [Display(Name = "Эл. почта")]
+            public string Email { get; set; }
+
         }
 
         private async Task LoadAsync(ClientCred user)
         {
-            var userName = await _userManager.GetUserNameAsync(user);
+            var Email = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
-            Username = userName;
+
+
 
             Input = new InputModel
             {

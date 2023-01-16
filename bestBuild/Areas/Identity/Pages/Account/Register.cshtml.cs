@@ -98,6 +98,18 @@ namespace bestBuild.Areas.Identity.Pages.Account
             [Display(Name = "Подтвердите пароль")]
             [Compare("Password", ErrorMessage = "Пароли не совпадают.")]
             public string ConfirmPassword { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Имя")]
+            public string UserName { get; set; }
+            [DataType(DataType.Text)]
+            [Display(Name = "Фамилия")]
+            public string UserLastName { get; set; }
+
+            [Display(Name = "Моб. телефон")]
+            [Required(ErrorMessage = "Поле обязательно для заполнения!")]
+            // [RegularExpression(@"^\+\d\d\d\d\d\d\d\d\d\d\d\d$", ErrorMessage = "Моб. телефон введен некорректно")]
+            public string PhoneNumber { get; set; }
         }
 
 
@@ -109,11 +121,15 @@ namespace bestBuild.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            returnUrl ??= Url.Content("~/ ");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+
+                user.UserName = Input.UserName;
+                user.UserLastName = Input.UserLastName;
+                user.PhoneNumber = Input.PhoneNumber;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
