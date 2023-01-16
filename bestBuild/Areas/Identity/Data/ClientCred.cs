@@ -11,7 +11,7 @@ namespace bestBuild.Areas.Identity.Data;
 public class ClientCred : IdentityUser
 {
     [Required]
-    public override string? UserName { get; set; }
+    public string? UserFirstName { get; set; }
     [Required]
     public string? UserLastName { get; set; }
     [Required]

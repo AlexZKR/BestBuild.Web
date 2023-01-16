@@ -56,10 +56,11 @@ namespace bestBuild.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Display(Name = "Имя")]
-            public string UserName { get; set; }
+            public string UserFirstName { get; set; }
 
             [Display(Name = "Фамилия")]
             public string UserLastName { get; set; }
+
             [Display(Name = "Номер телефона")]
             public string PhoneNumber { get; set; }
             [Display(Name = "Эл. почта")]
@@ -77,7 +78,10 @@ namespace bestBuild.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = user.PhoneNumber,
+                UserFirstName = user.UserFirstName,
+                UserLastName = user.UserLastName,
+                Email = user.Email
             };
         }
 
@@ -108,15 +112,34 @@ namespace bestBuild.Areas.Identity.Pages.Account.Manage
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
+            // if (Input.PhoneNumber != phoneNumber)
+            // {
+            //     var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+            //     if (!setPhoneResult.Succeeded)
+            //     {
+            //         StatusMessage = "Ошибка при изменении номера телефона.";
+            //         return RedirectToPage();
+            //     }
+            // }
+
+            if (Input.UserFirstName != user.UserName)
             {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
-                {
-                    StatusMessage = "Ошибка при изменении номера телефона.";
-                    return RedirectToPage();
-                }
+                user.UserName = Input.UserFirstName;
             }
+            if (Input.UserLastName != user.UserLastName)
+            {
+                user.UserLastName = Input.UserLastName;
+            }
+            if (Input.Email != user.Email)
+            {
+                user.Email = Input.Email;
+            }
+            if (Input.PhoneNumber != user.PhoneNumber)
+            {
+                user.PhoneNumber = Input.PhoneNumber;
+            }
+
+
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Ваш профиль был изменен";

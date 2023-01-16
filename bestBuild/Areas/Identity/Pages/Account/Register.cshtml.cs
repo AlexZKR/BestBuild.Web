@@ -101,7 +101,7 @@ namespace bestBuild.Areas.Identity.Pages.Account
 
             [DataType(DataType.Text)]
             [Display(Name = "Имя")]
-            public string UserName { get; set; }
+            public string UserFirstName { get; set; }
             [DataType(DataType.Text)]
             [Display(Name = "Фамилия")]
             public string UserLastName { get; set; }
@@ -127,7 +127,7 @@ namespace bestBuild.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                user.UserName = Input.UserName;
+                user.UserFirstName = Input.UserFirstName;
                 user.UserLastName = Input.UserLastName;
                 user.PhoneNumber = Input.PhoneNumber;
 
