@@ -11,40 +11,37 @@
     <div class="col-md-6">
         <form id="profile-form" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            
-            @* <div class="form-floating mb-3">
-                <input asp-for="UserName" class="form-control" placeholder="Пожалуйста, выберите имя профиля."
-                    disabled />
-                <label asp-for="UserName" class="form-label"></label>
-            </div> *@
+
+
+
             <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control"
-                     />
-                <label asp-for="Input.Email" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.UserFirstName" class="form-control"
-                     />
+                <input asp-for="Input.UserFirstName" class="form-control" />
                 <label asp-for="Input.UserFirstName" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                <span asp-validation-for="Input.UserFirstName" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Input.UserLastName" class="form-control"
-                     />
+                <input asp-for="Input.UserLastName" class="form-control" />
                 <label asp-for="Input.UserLastName" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                <span asp-validation-for="Input.UserLastName" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Input.PhoneNumber" class="form-control"
-                    />
+                <input asp-for="Input.PhoneNumber" class="form-control" />
                 <label asp-for="Input.PhoneNumber" class="form-label"></label>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
-        
+            <div class="row mt-3">
+                <div class="col-6 mb-3">
+                    <h6>Персональная скидка</h6>
+                    <p class="text-muted">@Model.Input.PersDisc</p>
+                </div>
+                <div class="col-6 mb-3">
+                    <h6>Сумма выкупа</h6>
+                    <p class="text-muted">@Model.Input.Redemp</p>
+                </div>
+            </div>
             <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Сохранить</button>
         </form>
-        
+
     </div>
 </div>
 

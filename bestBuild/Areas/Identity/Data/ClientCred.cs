@@ -11,10 +11,13 @@ namespace bestBuild.Areas.Identity.Data;
 public class ClientCred : IdentityUser
 {
     [Required]
+    [PersonalData]
     public string? UserFirstName { get; set; }
     [Required]
+    [PersonalData]
     public string? UserLastName { get; set; }
     [Required]
+    [PersonalData]
     public override string? PhoneNumber { get => base.PhoneNumber; set => base.PhoneNumber = value; }
     [Range(0, 1)]
     public double PersonalDiscount { get; set; }

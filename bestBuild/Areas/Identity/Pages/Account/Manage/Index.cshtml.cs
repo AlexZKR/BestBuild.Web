@@ -66,6 +66,12 @@ namespace bestBuild.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Эл. почта")]
             public string Email { get; set; }
 
+            [Display(Name = "Персональная скидка")]
+            public string PersDisc { get; set; }
+            [Display(Name = "Сумма выкупа")]
+            public string Redemp { get; set; }
+
+
         }
 
         private async Task LoadAsync(ClientCred user)
@@ -81,7 +87,9 @@ namespace bestBuild.Areas.Identity.Pages.Account.Manage
                 PhoneNumber = user.PhoneNumber,
                 UserFirstName = user.UserFirstName,
                 UserLastName = user.UserLastName,
-                Email = user.Email
+                Email = user.Email,
+                Redemp = user.AmoutOfRedemption.ToString("N2"),
+                PersDisc = user.PersonalDiscount.ToString("N2")
             };
         }
 
@@ -122,7 +130,7 @@ namespace bestBuild.Areas.Identity.Pages.Account.Manage
             //     }
             // }
 
-            if (Input.UserFirstName != user.UserName)
+            if (Input.UserFirstName != user.UserFirstName)
             {
                 user.UserName = Input.UserFirstName;
             }
@@ -140,7 +148,7 @@ namespace bestBuild.Areas.Identity.Pages.Account.Manage
             }
 
 
-
+            await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Ваш профиль был изменен";
             return RedirectToPage();

@@ -3,13 +3,15 @@
 
 @inject SignInManager<ClientCred> SignInManager
 @inject UserManager<ClientCred> UserManager
-
+@{
+    ClientCred Appuser = await UserManager.GetUserAsync(User)!;
+}
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
             <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index"
-            title="Manage">Привет, @UserManager.GetUserName(User)!</a>
+            title="Manage">Привет, @Appuser.UserFirstName @Appuser.UserLastName!</a>
         </li>
         <li class="nav-item">
             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
