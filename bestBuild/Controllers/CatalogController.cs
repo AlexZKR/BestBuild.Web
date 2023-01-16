@@ -1,4 +1,5 @@
 using bestBuild.DAL.Data;
+using bestBuild.DAL.Entities;
 using bestBuild.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -33,11 +34,18 @@ public class CatalogController : Controller
 
         var ProdCatVmSearch = new ProductCatalogViewModel
         {
-            Products = await context.Products.Where(p => p.Name.ToLower().Contains(SearchQuery.ToLower())).ToListAsync(),
+            Products = SearchProducts(SearchQuery),
             ProductCategories = await context.ProductCategories.ToListAsync(),
             SearchQuery = SearchQuery,
         };
 
         return View("IndexCatalog", ProdCatVmSearch);
+    }
+
+    private List<Product> SearchProducts(string s)
+    {
+        List<Product> list = context.Products.ToList();
+        List<Product> res = list.Where(n => n.Name.ToLower().Contains(s.ToLower())).ToList();
+        return res;
     }
 }
