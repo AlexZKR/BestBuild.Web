@@ -14,4 +14,5 @@ public class Order
 
     //Navigation
     public List<Products_Orders> Products_Orders { get; set; } = null!;
+    public ClientCred MyProperty { get; set; }
 }

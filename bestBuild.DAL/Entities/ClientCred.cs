@@ -5,8 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
-namespace bestBuild.Areas.Identity.Data;
-
+namespace bestBuild.DAL.Entities;
 // Add profile data for application users by adding properties to the ClientCred class
 public class ClientCred : IdentityUser
 {

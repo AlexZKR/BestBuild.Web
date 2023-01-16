@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using bestBuild.Areas.Identity.Data;
 using bestBuild.Models;
 using bestBuild.Services;
+using bestBuild.DAL.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
