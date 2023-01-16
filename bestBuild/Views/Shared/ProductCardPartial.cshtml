@@ -5,7 +5,7 @@
     var returnUrl = request.Path + request.QueryString.ToUriComponent();
 }
 
-<div class="prod-card d-3">
+<div class="prod-card ">
     <a asp-controller="Product" asp-action="Index" asp-route-id="@Model.ProductId">
         <img src="~/Images/Products/@Model.Image" class="card-img-top " alt="@Model.Image">
     </a>

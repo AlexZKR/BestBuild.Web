@@ -1,0 +1,7 @@
+@model ProductCatalogViewModel
+
+
+<form asp-controller="Catalog" asp-action="IndexSearch" method="get" class="d-flex">
+    <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <input asp-for="SearchQuery" class="form-control me-2" type="text" placeholder="Поиск">
+</form>

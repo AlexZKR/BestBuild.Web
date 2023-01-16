@@ -19,6 +19,6 @@ public class CategoriesController : Controller
         List<ProductCategory> categories = await context.ProductCategories
             .OrderBy(n => n.Name)
             .ToListAsync();
-        return View(categories);
+        return View("IndexCategories", categories);
     }
 }

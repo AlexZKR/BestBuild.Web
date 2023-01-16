@@ -15,15 +15,29 @@ public class CatalogController : Controller
         this.context = context;
     }
     [Route("{id:int}")]
-    public async Task<IActionResult> Index(int? page, int id)
+    public async Task<IActionResult> Index(int? page, int? id)
     {
         if (context.ProductCategories == null) return Problem("context.ProductCategories is null");
+
         var ProdCatVm = new ProductCatalogViewModel
         {
             Products = await context.Products.Where(c => c.CategoryId == id).OrderBy(n => n.Name).ToListAsync(),
             ProductCategory = await context.ProductCategories.Where(i => i.CategoryId == id).FirstOrDefaultAsync()!,
             ProductCategories = await context.ProductCategories.ToListAsync()
         };
-        return View(ProdCatVm);
+        return View("IndexCatalog", ProdCatVm);
+    }
+
+    public async Task<IActionResult> IndexSearch(string SearchQuery)
+    {
+
+        var ProdCatVmSearch = new ProductCatalogViewModel
+        {
+            Products = await context.Products.Where(p => p.Name.ToLower().Contains(SearchQuery.ToLower())).ToListAsync(),
+            ProductCategories = await context.ProductCategories.ToListAsync(),
+            SearchQuery = SearchQuery,
+        };
+
+        return View("IndexCatalog", ProdCatVmSearch);
     }
 }

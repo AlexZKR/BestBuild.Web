@@ -76,20 +76,16 @@
                         </ul>
                     </div>
 
-
-                    <form class="d-flex" role="search">
-                        <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
-
-                    </form>
                 </ul>
+                @await Component.InvokeAsync("SearchMain");
+
 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <partial name="_LoginPartial" />
                     </li>
                     <li class="nav-item">
-                        @await Component.InvokeAsync("Cart")
+
                     </li>
                 </ul>
             </div>

@@ -8,6 +8,6 @@ public class ProductCatalogViewModel
     public ProductCategory ProductCategory { get; set; } = null!;
     public List<Product> Products { get; set; } = null!;
     public List<ProductCategory> ProductCategories { get; set; } = null!;
-    public string? SearchString { get; set; }
+    public string? SearchQuery { get; set; }
 
 }

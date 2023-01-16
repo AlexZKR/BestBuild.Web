@@ -17,6 +17,9 @@
                 <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Выйти</button>
             </form>
         </li>
+        <li class="nav-item">
+            @await Component.InvokeAsync("Cart")
+        </li>
     }
     else
     {

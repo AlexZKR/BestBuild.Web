@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace bestBuild.Controllers;
-[Route("Cart")]
 public class CartController : Controller
 {
     private readonly AppDbContext context;
@@ -20,6 +19,7 @@ public class CartController : Controller
         this.cart = cart;
     }
     [Route("Cart")]
+    [Authorize]
     public async Task<IActionResult> Index()
     {
         cart = HttpContext.Session.Get<Cart>(cartKey);
