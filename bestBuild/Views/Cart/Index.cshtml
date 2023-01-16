@@ -115,8 +115,12 @@
                                         <h5>@Model.Cost.ToString("N2") руб.</h5>
                                     </div>
 
-                                    <button type="button" class="btn btn-dark btn-block btn-lg"
-                                        data-mdb-ripple-color="dark">Оформить заказ</button>
+
+                                    <a class="btn btn-dark btn-block btn-lg" asp-controller="Orders" asp-action="Index"
+                                        asp-route-value="@Model" a>
+                                        Оформить заказ
+                                    </a>
+
 
                                 </div>
                             </div>
