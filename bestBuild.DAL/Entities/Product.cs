@@ -43,15 +43,15 @@ public class Product
     //Category
     [ForeignKey("CategoryId")]
     public int CategoryId { get; set; }
-    public ProductCategory Category { get; set; } = null!;
+    public virtual ProductCategory Category { get; set; } = null!;
 
     //Orders
-    public List<Products_Orders> Products_Orders { get; set; } = null!;
+    public virtual List<Products_Orders> Products_Orders { get; set; } = null!;
 
     //Sp. Offers
-    public List<Products_Offers> Products_Offers { get; set; } = null!;
+    public virtual List<Products_Offers> Products_Offers { get; set; } = null!;
 
     //Property
-    public List<ProductProperty> Properties { get; set; } = null!;
+    public virtual List<ProductProperty> Properties { get; set; } = null!;
 
 }

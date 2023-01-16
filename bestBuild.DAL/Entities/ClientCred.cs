@@ -21,5 +21,8 @@ public class ClientCred : IdentityUser
     [Range(0, 1)]
     public double PersonalDiscount { get; set; }
     public double AmoutOfRedemption { get; set; }
+
+    //Navigation
+    public virtual List<Order> Orders { get; set; } = null!;
 }
 

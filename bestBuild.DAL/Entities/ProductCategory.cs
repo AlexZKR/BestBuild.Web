@@ -17,5 +17,5 @@ public class ProductCategory
     public string Image { get; set; } = SD.NO_PHOTO;
 
     //Navigation
-    public List<Product> Products { get; set; } = null!;
+    public virtual List<Product> Products { get; set; } = null!;
 }

@@ -27,6 +27,6 @@ public class SpecialOffer
     public string Image { get; set; } = SD.NO_PHOTO;
 
     //Navigation
-    public List<Products_Offers> Products_Offers { get; set; } = null!;
+    public virtual List<Products_Offers> Products_Offers { get; set; } = null!;
 
 }
