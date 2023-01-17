@@ -1,0 +1,45 @@
+@page
+@model OrdersModel
+@{
+    ViewData["Title"] = "Заказы";
+    ViewData["ActivePage"] = ManageNavPages.Orders;
+}
+<h3>@ViewData["Title"]</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>На этой вкладке вы можете просмотреть историю ваших заказов.</p>
+    </div>
+</div>
+<div class="list-group">
+    @foreach (var item in @Model.Orders)
+    {
+        <a title="Просмотреть заказ" asp-controller="Orders" asp-action="ViewOrderDetails" asp-route-orderId="@item.ID"
+        class="list-group-item list-group-item-action">
+
+            <div class="row mb-2 d-flex  align-items-center">
+                <div class="col-md-2 col-lg-2 col-xl-2">
+                    <h6 class="text-muted">Заказ № @item.ID</h6>
+                    <h6 class="text-black mb-0">Дата заказа: @item.DateOfPlacement.ToString("dd.MM.yyyy")</h6>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2">
+                    <h6 class="text-muted">Количество</h6>
+                    <h6 class="text-black mb-0">@item.Products.Count</h6>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 d-flex">
+
+                    <div class="col-md-9 col-lg-9 col-xl-9">
+                        <h6 class="text-muted">Сумма заказа</h6>
+                        <h6 class="text-black mb-0">@(item.OrderPrice - item.OrderDiscount)</h6>
+                    </div>
+                    <div class="col-md-9 col-lg-9 col-xl-9">
+                        <h6 class="text-muted">Размер скидки</h6>
+                        <h6 class="text-black mb-0">
+                            @item.OrderDiscount.ToString("N2")</h6>
+                    </div>
+                </div>
+            </div>
+
+        </a>
+    }
+</div>

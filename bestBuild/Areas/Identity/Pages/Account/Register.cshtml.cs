@@ -106,6 +106,9 @@ namespace bestBuild.Areas.Identity.Pages.Account
             [DataType(DataType.Text)]
             [Display(Name = "Фамилия")]
             public string UserLastName { get; set; }
+            [DataType(DataType.Text)]
+            [Display(Name = "Адрес")]
+            public string UserAddress { get; set; }
 
             [Display(Name = "Моб. телефон")]
             [Required(ErrorMessage = "Поле обязательно для заполнения!")]
@@ -131,6 +134,7 @@ namespace bestBuild.Areas.Identity.Pages.Account
                 user.UserFirstName = Input.UserFirstName;
                 user.UserLastName = Input.UserLastName;
                 user.PhoneNumber = Input.PhoneNumber;
+                user.UserAddress = Input.UserAddress;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

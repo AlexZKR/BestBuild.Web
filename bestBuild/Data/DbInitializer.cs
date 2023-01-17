@@ -2,6 +2,7 @@
 using bestBuild.DAL.Data;
 using bestBuild.DAL.Entities;
 using bestBuild.DAL.Data.Enums;
+using bestBuild.Areas.Identity.Data;
 
 namespace bestBuild.Data;
 
@@ -81,51 +82,6 @@ public class DbInitializer
                             },
                         }
                     }
-                    // new Product
-                    // {
-                    //     Name = "Ножовка",
-                    //     Description = "Описание ножовки",
-                    //     Price = 102,
-                    //     Quantity = 52,
-                    //     CategoryId = 1,
-                    //     Discount = 0.12,
-                    //     Image = "prod_saw.jpg",
-                    //     Brand = "Bosch"
-                    // },
-                    // new Product
-                    // {
-                    //     Name = "Штукатурка",
-                    //     Description = "Описание штукатурки",
-                    //     Price = 104,
-                    //     Quantity = 54,
-                    //     CategoryId = 2,
-                    //     Discount = 0.14,
-                    //     Image = "prod_plaster.jpg",
-                    //     Brand = "Lux"
-                    // },
-                    // new Product
-                    // {
-
-                    //     Name = "Кирпичи",
-                    //     Description = "Описание кирпичей",
-                    //     Price = 105,
-                    //     Quantity = 55,
-                    //     CategoryId = 2,
-                    //     Discount = 0.15,
-                    //     Image = "prod_bricks.jpg",
-                    //     Brand = "Lux"
-                    // },
-                    // new Product
-                    // {
-                    //     Name = "Доски",
-                    //     Description = "Описание досок",
-                    //     Price = 106,
-                    //     Quantity = 56,
-                    //     CategoryId = 2,
-                    //     Discount = 0.16,
-                    //     Image = "prod_planks.jpg",
-                    //     Brand = "Lux"
-                    // }
                 );
             }
 
@@ -146,10 +102,12 @@ public class DbInitializer
                     }
                 );
             }
-
-
-
             context.SaveChangesAsync();
+        }
+        using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
+        {
+            var context = serviceScope.ServiceProvider.GetService<bestBuildIdentityDbContext>()!;
+            context.Database.EnsureCreated();
         }
     }
 }

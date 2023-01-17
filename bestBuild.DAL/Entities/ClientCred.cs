@@ -15,6 +15,8 @@ public class ClientCred : IdentityUser
     [Required]
     [PersonalData]
     public string? UserLastName { get; set; }
+    [PersonalData]
+    public string? UserAddress { get; set; }
     [Required]
     [PersonalData]
     public override string? PhoneNumber { get => base.PhoneNumber; set => base.PhoneNumber = value; }

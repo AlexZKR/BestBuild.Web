@@ -5,7 +5,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace  bestBuild.Areas.Identity.Pages.Account.Manage
+namespace bestBuild.Areas.Identity.Pages.Account.Manage
 {
     /// <summary>
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -60,6 +60,11 @@ namespace  bestBuild.Areas.Identity.Pages.Account.Manage
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
         public static string TwoFactorAuthentication => "TwoFactorAuthentication";
+
+
+        public static string Orders => "Orders";
+
+        public static string OrdersNavClass(ViewContext viewContext) => PageNavClass(viewContext, Orders);
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used

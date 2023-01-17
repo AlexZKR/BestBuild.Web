@@ -51,6 +51,7 @@ public class Order
 
     //Navigation
     public virtual List<Products_Orders> Products_Orders { get; set; } = null!;
+
     public virtual List<Product> Products { get; set; } = null!;
     [NotMapped]
     public virtual ClientCred Client { get; set; } = null!;
