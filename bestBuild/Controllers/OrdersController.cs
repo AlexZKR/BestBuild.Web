@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace bestBuild.Controllers;
-
+[Route("Orders")]
 public class OrdersController : Controller
 {
     private readonly AppDbContext context;
@@ -22,10 +22,34 @@ public class OrdersController : Controller
         this.userManager = userManager;
     }
     [Route("CreateOrder")]
-    public async Task<IActionResult> CreateOrder(string cartKey, string clientId)
+    public async Task<IActionResult> CreateOrder()
     {
-        var cart = HttpContext.Session.Get<Cart>("cart");
-        var user = await userManager.GetUserAsync(HttpContext.User);
+        var user = GetCurrentUser().Result!;
+        var order = new Order
+        {
+            Client = user,
+            Products = GetCartProducts("cart"),
+            FirstName = user!.UserFirstName!,
+            LastName = user.UserLastName!,
+            Email = user.UserName!,
+            PhoneNumber = user.PhoneNumber,
+        };
+
+        return View(order);
+    }
+    [Route("PlaceOrder")]
+    [HttpPost("PlaceOrder")]
+    public IActionResult PlaceOrder([Bind("Id, FirstName, LastName, Address, Email, PhoneNumber, DeliveryType, PaymentType, OrderInfo")] Order order)
+    {
+        order.Products = GetCartProducts("cart");
+        order.Client = GetCurrentUser().Result!;
+
+        return View("OrderDetailed", order);
+    }
+
+    private List<Product> GetCartProducts(string cartKey)
+    {
+        var cart = HttpContext.Session.Get<Cart>(cartKey);
 
         var products = new List<Product>();
         foreach (var item in cart.Items.Values)
@@ -35,11 +59,14 @@ public class OrdersController : Controller
                 products.Add(item.Product);
             }
         }
-        var order = new Order
-        {
-            Client = user!,
-            Products = products,
-        };
-        return View(order);
+        return products;
+    }
+
+    private async Task<ClientCred?> GetCurrentUser()
+    {
+        return await userManager.GetUserAsync(HttpContext.User);
     }
 }
+
+
+//

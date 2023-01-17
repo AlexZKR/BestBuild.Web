@@ -4,9 +4,13 @@
     <div class="container py-6 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12">
+
                 <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+
                     <div class="card-body p-0">
+
                         <div class="row g-0">
+
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -14,18 +18,24 @@
                                         <h6 class="mb-0 text-muted">Количество: @Model.Products.Count</h6>
                                     </div>
                                     <div class="col-12">
-                                        <form>
+                                        <div class="col">
+
+                                        </div>
+                                        <form asp-controller="Orders" asp-action="PlaceOrder" method="post"
+                                            enctype="multipart/form-data">
                                             <!-- 2 column grid layout with text inputs for the first and last names -->
                                             <div class="row mb-4">
                                                 <div class="col">
                                                     <div class="form-outline">
-                                                        <input type="text" id="form6Example1" class="form-control" />
+                                                        <input type="text" asp-for="@Model.FirstName" id="form6Example1"
+                                                            class="form-control" />
                                                         <label class="form-label" for="form6Example1">Имя</label>
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-outline">
-                                                        <input type="text" id="form6Example2" class="form-control" />
+                                                        <input type="text" asp-for="@Model.LastName" id="form6Example2"
+                                                            class="form-control" />
                                                         <label class="form-label" for="form6Example2">Фамилия</label>
                                                     </div>
                                                 </div>
@@ -33,51 +43,73 @@
 
                                             <!-- Text input -->
                                             <div class="form-outline mb-4">
-                                                <input type="text" id="form6Example3" class="form-control" />
+                                                <input type="text" asp-for="@Model.Address" id="form6Example3"
+                                                    class="form-control" autocomplete="address-line1" />
                                                 <label class="form-label" for="form6Example3">Адрес</label>
                                             </div>
 
                                             <!-- Email input -->
                                             <div class="form-outline mb-4">
-                                                <input type="email" id="form6Example5" class="form-control" />
+                                                <input type="email" asp-for="@Model.Email" id="form6Example5"
+                                                    class="form-control" autocomplete="email" />
                                                 <label class="form-label" for="form6Example5">Эл. почта</label>
                                             </div>
 
                                             <!-- Number input -->
                                             <div class="form-outline mb-4">
-                                                <input type="text" id="form6Example6" class="form-control" />
+                                                <input type="text" asp-for="@Model.PhoneNumber" id="form6Example6"
+                                                    class="form-control" autocomplete="tel-national" />
                                                 <label class="form-label" for="form6Example6">Номер телефона</label>
                                             </div>
 
                                             <div class="form-outline mb-4">
-                                                <select id="form6Example7" class="form-control">
+                                                <select id="form6Example7" asp-for="@Model.DeliveryType"
+                                                    class="form-control">
                                                     <optgroup>
-                                                        <option value="Self_Delivery">Самовывоз</option>
-                                                        <option value="Standart">Стандартная Доставка</option>
-                                                        <option value="Post">Почтой</option>
+                                                        <option value="0">Стандартная Доставка</option>
+                                                        <option value="1">Самовывоз</option>
+                                                        <option value="2">Почтой</option>
                                                     </optgroup>
                                                 </select>
                                                 <label class="form-label" for="form6Example7">Доставка</label>
                                             </div>
+                                            <div class="mb-4 d-flex">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" asp-for="@Model.PaymentType"
+                                                        type="radio" id="exampleRadios1" value="0" checked>
+                                                    <label class="form-check-label" for="exampleRadios1">
+                                                        Оплата наличными
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline mx-5">
+                                                    <input class="form-check-input" asp-for="@Model.PaymentType"
+                                                        type="radio" id="exampleRadios2" value="1">
+                                                    <label class="form-check-label" for="exampleRadios2">
+                                                        Оплата картой
+                                                    </label>
+                                                </div>
+                                            </div>
 
                                             <!-- Message input -->
                                             <div class="form-outline mb-4">
-                                                <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                                                <textarea class="form-control" asp-for="@Model.OrderInfo"
+                                                    id="form6Example7" rows="4"></textarea>
                                                 <label class="form-label" for="form6Example7">Комментарии к
                                                     заказу</label>
                                             </div>
 
-                                            <!-- Checkbox -->
-                                            <div class="form-check d-flex justify-content-center mb-4">
+                                            @* <!-- Checkbox -->
+                                                <div class="form-check d-flex justify-content-center mb-4">
                                                 <input class="form-check-input me-2" type="checkbox" value=""
-                                                    id="form6Example8" checked />
+                                                id="form6Example8" checked />
                                                 <label class="form-check-label" for="form6Example8"> Create an account?
                                                 </label>
-                                            </div>
+                                                </div> *@
                                             <div class="row">
                                                 <!-- Submit button -->
-                                                <button type="submit" class="btn btn-primary btn-block mb-4">Place
-                                                    order</button>
+
+                                                <input type="submit" value="Продолжить"
+                                                    class="btn btn-primary btn-block mb-4" />
 
                                                 <h6 class="mb-0"><a asp-controller="Categories" asp-action="Index"
                                                         class="text-body"><i
@@ -86,45 +118,40 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="col-lg-6 bg-grey">
-                                        <div class="p-3">
-                                            <div class="list-group">
-                                                @foreach (var item in @Model.Products)
-                                                {
-                                                    <a href="#" class="list-group-item list-group-item-action">
-                                                        <div class="d-flex w-100 justify-content-between">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 bg-grey">
+                                <div class="p-3 col">
+                                    <div class="list-group">
+                                        @foreach (var item in @Model.Products)
+                                        {
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-50 justify-content-between">
+                                                    <div class="col-md-5 col-lg-5 col-xl-5">
+                                                        <img src="~/Images/Products/@item.Image" class="img-fluid rounded-3"
+                                                        alt="Cotton T-shirt">
+                                                    </div>
 
-                                                            <div class="col-md-5 col-lg-5 col-xl-5">
-                                                                <img src="~/Images/Products/@item.Image"
-                                                                class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                                            </div>
-                                                            <h5 class="mb-1">@item.Name</h5>
-                                                            @if (@item.Discount > 0)
-                                                            {
-                                                                <small class="text-danger"
-                                                            style="text-decoration: line-through;">@item.Price </small>
-                                                                @item.DiscountedPrice.ToString("N2")
-                                                            }
-                                                            @if (@item.Discount == 0)
-                                                            {
-                                                                @item.Price
-                                                            }
-
-
-                                                        </div>
-                                                    </a>
-                                                }
-                                                
-
-
-
-                                            </div>
-                                        </div>
-
-                                       
+                                                    <ul>
+                                                        <h4 class="li-item">@item.Name</h4>
+                                                        @if (@item.Discount > 0)
+                                                        {
+                                                            <small class="text-danger li-item" style="color: #ccc;
+                                                            font-weight: 400;
+                                                            text-decoration: line-through;
+                                                            margin-right: 5px;">@item.Price </small>
+                                                            @item.DiscountedPrice.ToString("N2")
+                                                        }
+                                                        @if (@item.Discount == 0)
+                                                        {
+                                                            @item.Price
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </a>
+                                        }
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>

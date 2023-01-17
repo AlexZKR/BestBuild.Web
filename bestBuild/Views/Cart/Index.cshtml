@@ -97,12 +97,7 @@
                                             <h5 class="text-uppercase">Итоговая цена</h5>
                                             <h5>@Model.Cost.ToString("N2") руб.</h5>
                                         </div>
-@{
-    var client = await UserManager.GetUserAsync(User);
-    var clientId = client.Id;
-}
-
-                                            <a class="btn btn-dark btn-block btn-lg" asp-controller="Orders" asp-action="CreateOrder" asp-route-clientId="@clientId" a>
+                                            <a class="btn btn-dark btn-block btn-lg" asp-controller="Orders" asp-action="CreateOrder"  a>
                                             Оформить заказ
                                         </a>
 

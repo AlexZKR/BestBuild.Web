@@ -1,0 +1,112 @@
+@model bestBuild.DAL.Entities.Order
+<h3 class="m-3">@Model.FirstName @Model.LastName, спасибо за Ваш заказ! <i class="fa-solid fa-truck"></i></h3>
+<table class="table table-hover m-3">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Адрес доставки</th>
+            <th scope="col">Адрес эл. почты</th>
+            <th scope="col">Номер телефона</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">
+                Заказчик
+            </th>
+            <td>
+                <p style="color: black;">@Model.FirstName</p>
+            </td>
+            <td>
+                <p style="color: black;">@Model.LastName</p>
+            </td>
+            <td>
+                <p style="color: black;">@Model.Address</p>
+            </td>
+            <td>
+                <p style="color: black;">@Model.Email</p>
+            </td>
+            <td>
+                <p style="color: black;">@Model.PhoneNumber</p>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
+                Комментарии к заказу
+            </th>
+            <td colspan="5">
+                <p style="color: black;">@Model.OrderInfo</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@if (Model.PaymentType == bestBuild.DAL.Entities.Enums.PaymentType.Cash)
+{
+    <p class="ordp">Оплата: Наличными</p>
+
+}
+@if (Model.PaymentType == bestBuild.DAL.Entities.Enums.PaymentType.PaymentCard)
+{
+    <p class="ordp">Оплата: Картой</p>
+
+}
+
+
+@if (Model.DeliveryType == bestBuild.DAL.Entities.Enums.DeliveryType.Self_delivery)
+{
+    <p class="ordp">Доставка: Самовывоз</p>
+
+}
+@if (Model.DeliveryType == bestBuild.DAL.Entities.Enums.DeliveryType.PostShipment)
+{
+    <p class="ordp">Доставка: Почтой</p>
+
+}
+@if (Model.DeliveryType == bestBuild.DAL.Entities.Enums.DeliveryType.FreeShipment)
+{
+    <p class="ordp">Доставка: Стандартная доставка. Ориентировочно: @Model.DateOfCompletion</p>
+
+}
+<hr class="m-3" />
+<h4 class="m-3">Состав заказа: Количество позиций: @Model.Products.Count</h4>
+
+@{
+    int i = 1;
+}
+
+<table class="table table-hover m-3">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Название</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Цена со скидкой</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model.Products)
+        {
+            <tr>
+                <th>
+                    @(i++)
+                </th>
+                <td>
+                    <p style="color: black;">@item.Name</p>
+                </td>
+                <td>
+                    <p style="color: black;">@Model.LastName</p>
+                </td>
+                <td>
+                    <p style="color: black;">@item.Price</p>
+                </td>
+                <td>
+                    <p style="color: black;">@item.DiscountedPrice</p>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
