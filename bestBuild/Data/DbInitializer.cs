@@ -3,12 +3,15 @@ using bestBuild.DAL.Data;
 using bestBuild.DAL.Entities;
 using bestBuild.DAL.Data.Enums;
 using bestBuild.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace bestBuild.Data;
 
 public class DbInitializer
 {
-    public static void Seed(IApplicationBuilder applicationBuilder)
+    // UserManager<ClientCred> userManager,
+    // RoleManager<IdentityRole> roleManager
+    public static async Task Seed(IApplicationBuilder applicationBuilder)
     {
         using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
         {
@@ -107,7 +110,48 @@ public class DbInitializer
         using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
         {
             var context = serviceScope.ServiceProvider.GetService<bestBuildIdentityDbContext>()!;
+            var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>()!;
+            var userManager = serviceScope.ServiceProvider.GetService<UserManager<ClientCred>>()!;
             context.Database.EnsureCreated();
+            if (!context.Roles.Any())
+            {
+                var roleAdmin = new IdentityRole
+                {
+                    Name = "admin",
+                    NormalizedName = "admin"
+                };
+                // создать роль admin
+                await roleManager.CreateAsync(roleAdmin);
+            }
+            // проверка наличия пользователей
+            if (!context.Users.Any())
+            {
+                // создать пользователя user@test.com
+                var user = new ClientCred
+                {
+                    Email = "user@test.com",
+                    UserName = "user@test.com",
+                    UserFirstName = "Глеб",
+                    UserLastName = "Кривуля",
+                    UserAddress = "На матрас скидывайте, там пох. Или на кресло",
+                    PhoneNumber = "+375294685978"
+                };
+                await userManager.CreateAsync(user, "123456");
+                // создать пользователя admin@mail.ru
+                var admin = new ClientCred
+                {
+                    Email = "admin@test.com",
+                    UserName = "admin@test.com",
+                    UserFirstName = "Александр",
+                    UserLastName = "Закревский",
+                    UserAddress = "Кунцы",
+                    PhoneNumber = "+375297825341"
+                };
+                await userManager.CreateAsync(admin, "123456");
+                // назначить роль admin
+                //admin = await userManager.FindByEmailAsync("admin@test.com");
+                await userManager.AddToRoleAsync(admin, "admin");
+            }
         }
     }
 }

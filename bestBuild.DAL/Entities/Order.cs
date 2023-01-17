@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using bestBuild.DAL.Entities.Enums;
-using bestBuild.DAL.Entities.Relationships;
 
 namespace bestBuild.DAL.Entities;
 
@@ -50,7 +49,6 @@ public class Order
 
 
     //Navigation
-    public virtual List<Products_Orders> Products_Orders { get; set; } = null!;
 
     public virtual List<Product> Products { get; set; } = null!;
     [NotMapped]

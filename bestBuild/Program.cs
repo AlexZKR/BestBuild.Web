@@ -20,9 +20,13 @@ builder.Services.AddDbContext<bestBuildIdentityDbContext>(
     options => options.UseLazyLoadingProxies()
     .UseSqlite(builder.Configuration.GetConnectionString("bestBuildIdentityDbContextConnection")));
 
-builder.Services.AddDefaultIdentity<ClientCred>(options =>
- options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<bestBuildIdentityDbContext>();
-
+// builder.Services.AddDefaultIdentity<ClientCred>(options =>
+//  options.SignIn.RequireConfirmedAccount = true)
+//  .AddRoleManager<IdentityRole>()
+//  .AddEntityFrameworkStores<bestBuildIdentityDbContext>();
+builder.Services.AddIdentity<ClientCred, IdentityRole>()
+.AddEntityFrameworkStores<bestBuildIdentityDbContext>()
+.AddDefaultTokenProviders();
 
 builder.Services.AddSession(opt =>
     {
@@ -64,6 +68,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
-DbInitializer.Seed(app);
+await DbInitializer.Seed(app);
 
 app.Run();

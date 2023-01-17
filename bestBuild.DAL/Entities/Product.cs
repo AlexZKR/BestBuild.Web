@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using bestBuild.DAL.Data.Enums;
-using bestBuild.DAL.Entities.Relationships;
 
 namespace bestBuild.DAL.Entities;
 
@@ -44,13 +43,8 @@ public class Product
     [ForeignKey("CategoryId")]
     public int CategoryId { get; set; }
     public virtual ProductCategory Category { get; set; } = null!;
-
     //Orders
-    public virtual List<Products_Orders> Products_Orders { get; set; } = null!;
-
-    //Sp. Offers
-    public virtual List<Products_Offers> Products_Offers { get; set; } = null!;
-
+    public virtual List<Order> Orders { get; set; } = null!;
     //Property
     public virtual List<ProductProperty> Properties { get; set; } = null!;
 
