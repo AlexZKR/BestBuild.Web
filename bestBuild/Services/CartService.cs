@@ -48,7 +48,9 @@ namespace bestBuild.Services
         public override void ClearAll()
         {
             base.ClearAll();
+            Session?.Clear();
             Session?.Set<CartService>(sessionKey, this);
+
         }
     }
 }

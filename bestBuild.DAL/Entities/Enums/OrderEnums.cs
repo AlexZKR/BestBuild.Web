@@ -3,8 +3,8 @@ namespace bestBuild.DAL.Entities.Enums;
 public enum PaymentType
 {
     Cash,
-    PaymentCard,
-    Online
+    PaymentCard
+
 };
 
 public enum DeliveryType
