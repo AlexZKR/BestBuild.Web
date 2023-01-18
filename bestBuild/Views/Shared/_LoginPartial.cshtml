@@ -13,6 +13,33 @@
             <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index"
             title="Manage">Привет, @Appuser.UserFirstName @Appuser.UserLastName!</a>
         </li>
+        if (Context.User.IsInRole("admin"))
+        {
+            <li class="nav-item dropdown">
+                <a class="nav-link d-flex dropdown-toggle" aria-current="page" aria-haspopup="true" asp-controller="Categories"
+            asp-action="Index">
+                    <strong class="fw-bold text-danger d-block">ADMIN</strong>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-item">
+                        <a class="nav-link" aria-current="page" asp-controller="Catalog" asp-action="Index">
+                            Категории
+                        </a>
+                    </li>
+                    <li class="dropdown-item">
+                        <a class="nav-link" aria-current="page" asp-controller="Catalog" asp-action="Index">
+                            Товары
+                        </a>
+                    </li>
+                    <hr>
+                    <li class="dropdown-item">
+                        <a class="nav-link" aria-current="page" asp-controller="Catalog" asp-action="Index">
+                            Заказы
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        }
         <li class="nav-item">
             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
             asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

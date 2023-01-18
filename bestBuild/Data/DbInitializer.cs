@@ -153,6 +153,7 @@ public class DbInitializer
 
                 await userManager.AddToRoleAsync(user, "user");
 
+
                 //Создать пользователя с правами админа
                 var admin = new ClientCred
                 {

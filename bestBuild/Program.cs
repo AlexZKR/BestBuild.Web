@@ -21,13 +21,20 @@ builder.Services.AddDbContext<bestBuildIdentityDbContext>(
     options => options.UseLazyLoadingProxies()
     .UseSqlite(builder.Configuration.GetConnectionString("bestBuildIdentityDbContextConnection")));
 
-// builder.Services.AddDefaultIdentity<ClientCred>(options =>
-//  options.SignIn.RequireConfirmedAccount = true)
-//  .AddRoleManager<IdentityRole>()
-//  .AddEntityFrameworkStores<bestBuildIdentityDbContext>();
+
 builder.Services.AddIdentity<ClientCred, IdentityRole>()
 .AddEntityFrameworkStores<bestBuildIdentityDbContext>()
 .AddDefaultTokenProviders();
+
+builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("admin", policy =>
+            {
+                policy.RequireAuthenticatedUser().RequireClaim("admin", bool.TrueString);
+            }
+        );
+    }
+);
 
 builder.Services.AddSession(opt =>
     {
