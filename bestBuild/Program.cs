@@ -30,7 +30,7 @@ builder.Services.AddAuthorization(options =>
     {
         options.AddPolicy("admin", policy =>
             {
-                policy.RequireAuthenticatedUser().RequireClaim("admin", bool.TrueString);
+                policy.RequireAuthenticatedUser().RequireRole("admin", bool.TrueString);
             }
         );
     }
@@ -41,6 +41,8 @@ builder.Services.AddSession(opt =>
         opt.Cookie.HttpOnly = true;
         opt.Cookie.IsEssential = true;
     });
+
+
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<Cart>(sp => CartService.GetCart(sp));

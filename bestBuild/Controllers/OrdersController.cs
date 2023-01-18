@@ -108,23 +108,21 @@ public class OrdersController : Controller
             }
         }
 
-        // var distinctProducts = order.Products;
-        // order.Products.Clear();
-        // foreach (var item in order.Products)
-        // {
-        //     var quantity = context.Products.
-        //     Where(p => p.ProductId == item.ProductId)
-        //     .Include(p => p.OrderProducts)
-        //     .Select(op => op.Quantity)
-        //     .FirstOrDefault();
-        //     for (int q = 0; q < quantity; q++)
-        //     {
-        //         order.Products.Add(item);
-        //     }
-        // }
-
         return View("OrderDetailed", order);
     }
+    [Authorize("admin")]
+    [HttpGet("ManageOrders")]
+    public async Task<IActionResult> ManageOrders(string? clientId)
+    {
+        var usersWithOrders = await identityDbContext.Users.Include(o => o.Orders).ToListAsync();
+        var vm = new ManageOrdersViewModel
+        {
+            ClientsList = usersWithOrders,
+            Client = await identityDbContext.Users.Where(u => u.Id == clientId).FirstOrDefaultAsync(),
+        };
+        return View("ManageOrders", vm);
+    }
+
 
     private List<Product> GetCartProducts(string cartKey)
     {
@@ -178,18 +176,14 @@ public class OrdersController : Controller
         return order;
     }
 
-    private void FillOrderQuantity(Order order)
-    {
-        foreach (var item in order.Products)
-        {
 
-        }
-    }
 
     private async Task<ClientCred?> GetCurrentUser()
     {
         return await userManager.GetUserAsync(HttpContext.User);
     }
+
+
 }
 
 

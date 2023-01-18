@@ -1,0 +1,27 @@
+@model ManageOrdersViewModel
+<aside class="col-md-3">
+
+    <div class="card">
+        <article class="filter-group">
+            <header class="card-header">
+                <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+                    <i class="icon-control fa fa-chevron-down"></i>
+                    <h6 class="title">Категории</h6>
+                </a>
+            </header>
+            <div class="filter-content collapse show" id="collapse_1" style="">
+                <div class="card-body">
+                    <ul class="list-menu">
+                        @foreach (var user in @Model.ClientsList)
+                        {
+                            <li><a asp-controller="Orders" asp-action="ManageOrders"
+                                asp-route-clientId="@user.Id">@user.UserFirstName @user.UserLastName</a>
+                            </li>
+                        }
+                    </ul>
+
+                </div> <!-- card-body.// -->
+            </div>
+        </article> <!-- filter-group  .// -->
+    </div>
+</aside>
