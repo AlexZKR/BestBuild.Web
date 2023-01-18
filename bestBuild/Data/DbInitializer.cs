@@ -4,13 +4,12 @@ using bestBuild.DAL.Entities;
 using bestBuild.DAL.Data.Enums;
 using bestBuild.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace bestBuild.Data;
 
 public class DbInitializer
 {
-    // UserManager<ClientCred> userManager,
-    // RoleManager<IdentityRole> roleManager
     public static async Task Seed(IApplicationBuilder applicationBuilder)
     {
         using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
@@ -105,7 +104,7 @@ public class DbInitializer
                     }
                 );
             }
-            context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
         using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
         {
@@ -113,45 +112,77 @@ public class DbInitializer
             var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>()!;
             var userManager = serviceScope.ServiceProvider.GetService<UserManager<ClientCred>>()!;
             context.Database.EnsureCreated();
+
             if (!context.Roles.Any())
             {
-                var roleAdmin = new IdentityRole
+                string[] roles = new string[] { "user", "admin" };
+
+                foreach (string role in roles)
                 {
-                    Name = "admin",
-                    NormalizedName = "admin"
-                };
-                // создать роль admin
-                await roleManager.CreateAsync(roleAdmin);
+                    if (!context.Roles.Any(r => r.Name == role))
+                    {
+                        await roleManager.CreateAsync(new IdentityRole(role));
+                    }
+                }
             }
-            // проверка наличия пользователей
             if (!context.Users.Any())
             {
-                // создать пользователя user@test.com
+                // создать пользователя user
                 var user = new ClientCred
                 {
                     Email = "user@test.com",
                     UserName = "user@test.com",
+                    NormalizedEmail = "USER@TEST.COM",
+                    NormalizedUserName = "USER@TEST.COM",
+                    EmailConfirmed = true,
+                    PhoneNumberConfirmed = true,
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
                     UserFirstName = "Глеб",
                     UserLastName = "Кривуля",
                     UserAddress = "На матрас скидывайте, там пох. Или на кресло",
                     PhoneNumber = "+375294685978"
                 };
-                await userManager.CreateAsync(user, "123456");
-                // создать пользователя admin@mail.ru
+
+                if (!context.Users.Any(u => u.UserName == user.UserName))
+                {
+                    var password = new PasswordHasher<ClientCred>();
+                    var hashed = password.HashPassword(user, "user1234");
+                    user.PasswordHash = hashed;
+                    var result = userManager.CreateAsync(user);
+                }
+
+                await userManager.AddToRoleAsync(user, "user");
+
+                //Создать пользователя с правами админа
                 var admin = new ClientCred
                 {
                     Email = "admin@test.com",
                     UserName = "admin@test.com",
+                    NormalizedEmail = "ADMIN@TEST.COM",
+                    NormalizedUserName = "ADMIN@TEST.COM",
+                    EmailConfirmed = true,
+                    PhoneNumberConfirmed = true,
+                    SecurityStamp = Guid.NewGuid().ToString("D"),
                     UserFirstName = "Александр",
                     UserLastName = "Закревский",
                     UserAddress = "Кунцы",
                     PhoneNumber = "+375297825341"
                 };
-                await userManager.CreateAsync(admin, "123456");
-                // назначить роль admin
-                //admin = await userManager.FindByEmailAsync("admin@test.com");
+
+                if (!context.Users.Any(u => u.UserName == admin.UserName))
+                {
+                    var password = new PasswordHasher<ClientCred>();
+                    var hashed = password.HashPassword(admin, "admin1234");
+                    admin.PasswordHash = hashed;
+
+                    var result = userManager.CreateAsync(admin);
+                }
+
                 await userManager.AddToRoleAsync(admin, "admin");
+                await context.SaveChangesAsync();
             }
+
         }
     }
+
 }
