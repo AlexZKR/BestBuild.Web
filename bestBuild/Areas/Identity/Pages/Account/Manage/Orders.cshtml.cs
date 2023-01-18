@@ -13,7 +13,7 @@ public class OrdersModel : PageModel
     private readonly SignInManager<ClientCred> _signInManager;
     private readonly AppDbContext context;
 
-    public List<Order> Orders { get; set; }
+    public List<Order>? Orders { get; set; }
 
     public OrdersModel(
         UserManager<ClientCred> userManager,

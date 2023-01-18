@@ -1,6 +1,9 @@
 @page
 @model OrdersModel
 @{
+    Layout = "_Layout.cshtml";
+}
+@{
     ViewData["Title"] = "Заказы";
     ViewData["ActivePage"] = ManageNavPages.Orders;
 }
@@ -12,7 +15,7 @@
     </div>
 </div>
 <div class="list-group">
-    @foreach (var item in @Model.Orders)
+    @foreach (var item in @Model.Orders!)
     {
         <a title="Просмотреть заказ" asp-controller="Orders" asp-action="ViewOrderDetails" asp-route-orderId="@item.ID"
         class="list-group-item list-group-item-action">

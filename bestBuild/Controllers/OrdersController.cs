@@ -28,7 +28,7 @@ public class OrdersController : Controller
         this.userManager = userManager;
     }
     [Route("CreateOrder")]
-    public async Task<IActionResult> CreateOrder()
+    public IActionResult CreateOrder()
     {
         var user = GetCurrentUser().Result!;
         var order = new Order
@@ -54,12 +54,9 @@ public class OrdersController : Controller
         order.Client = GetCurrentUser().Result!;
         order.ClientId = order.Client.Id;
 
-
-
         //Adding more info to order entity
         order.PersonalDiscount = order.Client.PersonalDiscount;
         order.DateOfCompletion = order.DateOfPlacement.AddDays(5);
-
 
         //Sum of redemption is added to clients profile
         order.Client.AmoutOfRedemption += order.OrderPrice - order.OrderDiscount;
@@ -77,7 +74,7 @@ public class OrdersController : Controller
     public async Task<IActionResult> ViewOrderDetails(int orderId)
     {
         var order = await context.Orders.Where(o => o.ID == orderId).Include(p => p.Products).FirstOrDefaultAsync();
-        order.Client = GetCurrentUser().Result!;
+        order!.Client = GetCurrentUser().Result!;
         return View("OrderDetailed", FillOrderCart(order!));
     }
 

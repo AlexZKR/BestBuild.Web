@@ -6,6 +6,7 @@ using bestBuild.Areas.Identity.Data;
 using bestBuild.Models;
 using bestBuild.Services;
 using bestBuild.DAL.Entities;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +37,7 @@ builder.Services.AddSession(opt =>
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<Cart>(sp => CartService.GetCart(sp));
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 builder.Services.ConfigureApplicationCookie(options =>
             {
