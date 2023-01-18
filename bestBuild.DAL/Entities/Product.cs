@@ -45,6 +45,8 @@ public class Product
     public virtual ProductCategory Category { get; set; } = null!;
     //Orders
     public virtual List<Order> Orders { get; set; } = null!;
+    //[ForeignKey("OrderId")]
+    public virtual List<OrderProduct> OrderProducts { get; set; } = null!;
     //Property
     public virtual List<ProductProperty> Properties { get; set; } = null!;
 

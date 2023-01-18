@@ -73,7 +73,7 @@ public class OrdersController : Controller
 
     public async Task<IActionResult> ViewOrderDetails(int orderId)
     {
-        var order = await context.Orders.Where(o => o.ID == orderId).Include(p => p.Products).FirstOrDefaultAsync();
+        var order = await context.Orders.Where(o => o.OrderId == orderId).Include(p => p.Products).FirstOrDefaultAsync();
         order!.Client = GetCurrentUser().Result!;
         return View("OrderDetailed", FillOrderCart(order!));
     }

@@ -7,7 +7,7 @@ namespace bestBuild.DAL.Entities;
 public class Order
 {
     [Required]
-    public int ID { get; set; }
+    public int OrderId { get; set; }
 
     [Required]
     [DataType(DataType.DateTime)]
@@ -51,6 +51,9 @@ public class Order
     //Navigation
 
     public virtual List<Product> Products { get; set; } = null!;
+    //[ForeignKey("ProductId")]
+    public virtual List<OrderProduct> OrderProducts { get; set; } = null!;
+
     [NotMapped]
     public virtual ClientCred Client { get; set; } = null!;
     [Required]
