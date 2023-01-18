@@ -120,7 +120,7 @@
                     <p style="color: black;">@discPrice руб.</p>
                 </td>
                 <td>
-                    <p style="color: black;">@item.Key.DiscountSize руб.</p>
+                    <p style="color: black;">@(item.Key.DiscountSize * item.Value) руб.</p>
                 </td>
             </tr>
         }
@@ -128,6 +128,6 @@
 </table>
 <div class="d-flex justify-content-between">
     <h4 class="m-3">Персональная скидка: @Model.Client.PersonalDiscount %</h4>
-    <h4 class="m-3">Размер общей скидки: @Model.OrderDiscount руб.</h4>
-    <h4 class="m-3" style="font-weight: bold;">Итого: @Model.OrderPrice руб.</h4>
+    <h4 class="m-3">Размер общей скидки: @Model.OrderDiscount.ToString("N2") руб.</h4>
+    <h4 class="m-3" style="font-weight: bold;">Итого: @(Model.OrderPrice - Model.OrderDiscount) руб.</h4>
 </div>

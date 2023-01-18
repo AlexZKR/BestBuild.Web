@@ -10,7 +10,7 @@ public class AppDbContext : DbContext
     public DbSet<Product> Products { get; set; } = null!;
     public DbSet<Order> Orders { get; set; } = null!;
 
-    //public DbSet<OrderProduct> OrderProducts { get; set; } = null!;
+    public DbSet<OrderProduct> OrderProducts { get; set; } = null!;
     public DbSet<ProductCategory> ProductCategories { get; set; } = null!;
 
     //Relationship tables
