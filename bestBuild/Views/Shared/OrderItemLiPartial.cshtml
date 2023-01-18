@@ -1,0 +1,58 @@
+@model Order
+<div class="row">
+    <div class="col">
+
+        <a title="Просмотреть заказ" asp-controller="Orders" asp-action="ViewOrderDetails"
+            asp-route-orderId="@Model.OrderId" class="list-group-item list-group-item-action">
+            <div class="row mb-2 d-flex  align-items-center">
+                <div class="col-md-2 col-lg-2 col-xl-2">
+                    <h6 class="text-muted">Заказ № @Model.OrderId</h6>
+                    <h6 class="text-black mb-0">Дата заказа: @Model.DateOfPlacement.ToString("dd.MM.yyyy")</h6>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-3">
+                    <h6 class="text-muted">Количество позиций</h6>
+                    <h6 class="text-black mb-0">@Model.Products.Count</h6>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 d-flex">
+
+                    <div class="col-md-9 col-lg-9 col-xl-9">
+                        <h6 class="text-muted">Сумма заказа</h6>
+                        <h6 class="text-black mb-0">@(Model.OrderPrice - Model.OrderDiscount)</h6>
+                    </div>
+                    <div class="col-md-9 col-lg-9 col-xl-9">
+                        <h6 class="text-muted">Размер скидки</h6>
+                        <h6 class="text-black mb-0">
+                            @Model.OrderDiscount.ToString("N2")</h6>
+                    </div>
+                    <div class="col-md-9 col-lg-9 col-xl-9">
+                        <h6 class="text-muted">Заказчик</h6>
+                        <h6 class="text-black mb-0">
+                            @* @Model.Client.UserFirstName @Model.Client.UserLastName *@
+                        </h6>
+                    </div>
+
+                </div>
+
+                <div class="d-flex mx-5 col">
+                    @if (Model.IsInProcess)
+                    {
+                        <h4 class="text-success mx-5">В обработке</h4>
+                    }
+                    @if (!Model.IsInProcess)
+                    {
+                        <h4 class="text-success mx-5">Обработан</h4>
+                    }
+                </div>
+
+            </div>
+        </a>
+    </div>
+
+    @if (@Model.IsInProcess)
+    {
+        <a title="Обработать заказ" class="btn btn-success mb-4" asp-controller="Orders" asp-action="ProccessOrder"
+        asp-route-orderId="@Model.OrderId" a>
+            <i class="fa-regular fa-circle-check"></i>
+        </a>
+    }
+</div>

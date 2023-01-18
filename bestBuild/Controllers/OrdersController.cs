@@ -58,8 +58,6 @@ public class OrdersController : Controller
         order.PersonalDiscount = order.Client.PersonalDiscount;
         order.DateOfCompletion = order.DateOfPlacement.AddDays(5);
 
-        //Sum of redemption is added to clients profile
-        order.Client.AmoutOfRedemption += order.OrderPrice - order.OrderDiscount;
 
         foreach (var item in order.Products)
         {
@@ -115,12 +113,57 @@ public class OrdersController : Controller
     public async Task<IActionResult> ManageOrders(string? clientId)
     {
         var usersWithOrders = await identityDbContext.Users.Include(o => o.Orders).ToListAsync();
-        var vm = new ManageOrdersViewModel
+
+        //if client is not specified we display general orders info
+        if (clientId == null)
         {
-            ClientsList = usersWithOrders,
-            Client = await identityDbContext.Users.Where(u => u.Id == clientId).FirstOrDefaultAsync(),
-        };
-        return View("ManageOrders", vm);
+            var vm = new ManageOrdersViewModel
+            {
+                ClientsList = usersWithOrders,
+                Client = await identityDbContext.Users.Where(u => u.Id == clientId).FirstOrDefaultAsync(),
+                ProccessedOrders = await context.Orders.Where(o => o.IsInProcess == false).Include(p => p.Products).ToListAsync(),
+                UnProccessedOrders = await context.Orders.Where(o => o.IsInProcess == true).Include(p => p.Products).ToListAsync(),
+            };
+            return View("ManageOrders", vm);
+
+        }
+        //if client is specified we display clients orders info
+        if (clientId != null)
+        {
+            var vm = new ManageOrdersViewModel
+            {
+                ClientsList = usersWithOrders,
+                Client = await identityDbContext.Users.Where(u => u.Id == clientId).FirstOrDefaultAsync(),
+                ProccessedOrders = await context.Orders.Where(o => o.IsInProcess == false && o.ClientId == clientId).Include(p => p.Products).ToListAsync(),
+                UnProccessedOrders = await context.Orders.Where(o => o.IsInProcess == true && o.ClientId == clientId).Include(p => p.Products).ToListAsync(),
+            };
+            return View("ManageOrders", vm);
+
+        }
+        return Problem("Manage orders went wrong");
+    }
+    /// <summary>
+    /// Proccesses order, adds up clients redemption sum and, if conditions are met, personal discount
+    /// </summary>
+    /// <param name="orderId">Id of order to proccess</param>
+    /// <returns>Back to manageOrders view with updated info</returns>
+    [Route("ProccessOrder")]
+    public async Task<IActionResult> ProccessOrder(int orderId)
+    {
+        var order = await context.Orders.Where(o => o.OrderId == orderId).FirstOrDefaultAsync();
+        order!.IsInProcess = false;
+
+        var client = await identityDbContext.Users.Where(u => u.Id == order.ClientId).FirstOrDefaultAsync();
+
+        //Sum of redemption is added to clients profile
+        client!.AmoutOfRedemption += order.OrderPrice - order.OrderDiscount;
+
+        CalculatePersonalDiscount(client);
+
+        await identityDbContext.SaveChangesAsync();
+        await context.SaveChangesAsync();
+
+        return RedirectToAction(nameof(ManageOrders));
     }
 
 
@@ -183,7 +226,19 @@ public class OrdersController : Controller
         return await userManager.GetUserAsync(HttpContext.User);
     }
 
-
+    private void CalculatePersonalDiscount(ClientCred client)
+    {
+        if (client.AmoutOfRedemption > 1000)
+            client.PersonalDiscount = 0.01;
+        if (client.AmoutOfRedemption > 2000)
+            client.PersonalDiscount = 0.02;
+        if (client.AmoutOfRedemption > 3000)
+            client.PersonalDiscount = 0.03;
+        if (client.AmoutOfRedemption > 4000)
+            client.PersonalDiscount = 0.05;
+        if (client.AmoutOfRedemption > 6000)
+            client.PersonalDiscount = 0.06;
+    }
 }
 
 
