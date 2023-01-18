@@ -17,32 +17,15 @@
 <div class="list-group">
     @foreach (var item in @Model.Orders!)
     {
-        <a title="Просмотреть заказ" asp-controller="Orders" asp-action="ViewOrderDetails" asp-route-orderId="@item.OrderId"
-        class="list-group-item list-group-item-action">
-
-            <div class="row mb-2 d-flex  align-items-center">
-                <div class="col-md-2 col-lg-2 col-xl-2">
-                    <h6 class="text-muted">Заказ № @item.OrderId</h6>
-                    <h6 class="text-black mb-0">Дата заказа: @item.DateOfPlacement.ToString("dd.MM.yyyy")</h6>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-3">
-                    <h6 class="text-muted">Количество позиций</h6>
-                    <h6 class="text-black mb-0">@item.Products.Count</h6>
-                </div>
-                <div class="col-md-2 col-lg-2 col-xl-2 d-flex">
-
-                    <div class="col-md-9 col-lg-9 col-xl-9">
-                        <h6 class="text-muted">Сумма заказа</h6>
-                        <h6 class="text-black mb-0">@(item.OrderPrice - item.OrderDiscount)</h6>
-                    </div>
-                    <div class="col-md-9 col-lg-9 col-xl-9">
-                        <h6 class="text-muted">Размер скидки</h6>
-                        <h6 class="text-black mb-0">
-                            @item.OrderDiscount.ToString("N2")</h6>
-                    </div>
-                </div>
+        if (!item.IsInProcess)
+        {
+            <div class="list-item disabled">
+                <partial name="OrderItemListPartial" model=@item />
             </div>
-
-        </a>
+        }
+        if (item.IsInProcess)
+        {
+            <partial name="OrderItemListPartial" model=@item />
+        }
     }
 </div>

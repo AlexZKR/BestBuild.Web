@@ -28,8 +28,7 @@ public class OrdersModel : PageModel
 
     private async Task LoadAsync(ClientCred user, AppDbContext context)
     {
-        Orders = await context.Orders.Where(o => o.ClientId == user.Id).Include(o => o.Products).ToListAsync();
-
+        Orders = await context.Orders.Where(o => o.ClientId == user.Id).OrderBy(i => i.IsInProcess).Include(o => o.Products).ToListAsync();
     }
     public async Task<IActionResult> OnGetAsync()
     {
