@@ -1,0 +1,79 @@
+@model List<ProductCategory>
+@{
+    ViewData["Title"] = "Менеджер категорий товаров";
+}
+<div class="container mt-2">
+    <h1>Менеджер категорий товаров</h1>
+
+    @* <form asp-controller="Book" asp-action="Index" method="get">
+        <p>
+        <label asp-for="BookGenre" class="control_label">Genre: </label>
+        <select id="genre_s" asp-for="BookGenre" asp-items="Model.Genres">
+        <option value="">All</option>
+        </select>
+
+        <label asp-for="BookAuthor" class="control_label">Author: </label>
+        <select asp-for="BookAuthor" asp-items="Model.Authors">
+        <option value="">All</option>
+        </select>
+
+        <input type="text" placeholder="Search 'Huxley' or 'Fahrenheit'" asp-for="SearchString" style="width: 250px;" />
+        <input type="submit" value="Search" asp-controller="Book" asp-action="Index" class="btn btn-primary" />
+        </p>
+        </form> *@
+
+    <p>
+        <a asp-controller="Categories" asp-action="Create" class="btn btn-primary">Добавить категорию</a>
+    </p>
+
+    @if (Model != null)
+    {
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model[0].ImagePath)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model[0].Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model[0].Description)
+                    </th>
+                    <th>
+                        Количество товара
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var b in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="~/Images/Categories/@b.ImagePath" alt="">
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => b.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => b.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => b.Products.Count)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@b.CategoryId">Edit</a>
+                            <a asp-action="Details" asp-route-id="@b.CategoryId">Details</a>
+                            <a asp-action="Delete" asp-route-id="@b.CategoryId">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h1>Nothing was found!</h1>
+    }
+</div>

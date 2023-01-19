@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace bestBuild.DAL.Entities;
 
@@ -8,13 +10,20 @@ public class ProductCategory
     public int CategoryId { get; set; }
     [Required]
     [DataType(DataType.Text)]
-    [StringLength(30)]
+    [Display(Name = "Наименование")]
+    [MinLength(2)]
+    [MaxLength(30)]
     public string Name { get; set; } = "";
     [DataType(DataType.MultilineText)]
-    [StringLength(500)]
+    [MinLength(2)]
+    [MaxLength(500)]
+    [Display(Name = "Описание")]
     public string Description { get; set; } = "";
-
-    public string Image { get; set; } = SD.NO_PHOTO;
+    [Display(Name = "Изображение")]
+    public string ImagePath { get; set; } = SD.NO_PHOTO;
+    [NotMapped]
+    [Display(Name = "Изображение")]
+    public IFormFile ImageFile { get; set; } = null!;
 
     //Navigation
     public virtual List<Product> Products { get; set; } = null!;

@@ -1,0 +1,38 @@
+@model ProductCategory
+@{
+    ViewData["Title"] = $"Добавление категории";
+}
+<div class="container mt-4">
+    <h1>Добавление категории</h1>
+
+    <a asp-controller="Categories" asp-action="IndexTable" class="btn btn-primary">Обратно к списку</a>
+    <hr>
+    <div class="row">
+        <div class="col-6">
+            <form asp-controller="Categories" asp-action="Create" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea asp-for="Description" type="text" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageFile" class="control-label"></label>
+                    <input asp-for="ImageFile" type="file" class="form-control" />
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="margin-top: 10px ;">
+                    <input type="submit" value="Добавить категорию" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
