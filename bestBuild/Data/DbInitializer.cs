@@ -28,8 +28,7 @@ public class DbInitializer
                         Quantity = 50,
                         CategoryId = 1,
                         Discount = 0.10,
-                        Brand = Brands.AKS_LIGHT,
-                        Image = "prod_h1.jpg",
+                        ImagePath = "prod_h1.jpg",
                         Properties = new List<ProductProperty>
                         {
                             new ProductProperty
@@ -60,8 +59,7 @@ public class DbInitializer
                         Quantity = 51,
                         CategoryId = 1,
                         Discount = 0.11,
-                        Image = "prod_h2.jpg",
-                        Brand = Brands.Blum,
+                        ImagePath = "prod_h2.jpg",
                         Properties = new List<ProductProperty>
                         {
                             new ProductProperty

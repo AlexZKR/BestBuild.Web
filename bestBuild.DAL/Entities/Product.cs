@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using bestBuild.DAL.Data.Enums;
+using Microsoft.AspNetCore.Http;
 
 namespace bestBuild.DAL.Entities;
 
@@ -15,25 +16,34 @@ public class Product
     [Display(Name = "Наименование товара")]
     public string Name { get; set; } = "";
 
-    [DataType(DataType.Text)]
-    [StringLength(30)]
-    public Brands Brand { get; set; }
+    // [DataType(DataType.Text)]
+    // [StringLength(30)]
+    // public Brands Brand { get; set; }
 
     [DataType(DataType.MultilineText)]
     [StringLength(500)]
+    [Display(Name = "Описание товара")]
     public string Description { get; set; } = "";
-    [DataType(DataType.Currency)]
+    [Display(Name = "Полная стоимость товара, руб.")]
     public int Price { get; set; } = 0;
+    [Display(Name = "В наличии")]
     public int Quantity { get; set; } = 0;
     [Range(0, 1)]
+    [Display(Name = "Скидка")]
     public double Discount { get; set; } = 0;
-    public string Image { get; set; } = SD.NO_PHOTO;
+    [Display(Name = "Изображение")]
+    public string ImagePath { get; set; } = SD.NO_PHOTO;
+    [NotMapped]
+    [Display(Name = "Изображение")]
+    public IFormFile ImageFile { get; set; } = null!;
 
     // Not mapped
 
     [NotMapped]
+    [Display(Name = "Цена со скидкой, руб.")]
     public double DiscountedPrice => Price - (Price / 1 * Discount);
     [NotMapped]
+    [Display(Name = "Размер скидки, руб.")]
     public double DiscountSize => Price / 1 * Discount;
 
     //Navigation 
@@ -41,6 +51,7 @@ public class Product
 
     //Category
     [ForeignKey("CategoryId")]
+    [Display(Name = "Категория товара")]
     public int CategoryId { get; set; }
     public virtual ProductCategory Category { get; set; } = null!;
     //Orders

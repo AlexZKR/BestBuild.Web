@@ -11,14 +11,12 @@ public class CategoriesController : Controller
     private const string CAT_BINDING_PROPS = "CategoryId, Name, Description, ImageFile, ImagePath";
 
     private readonly AppDbContext context;
-    private readonly IWebHostEnvironment environment;
 
     public readonly string directoryPath;
 
-    public CategoriesController(AppDbContext context, IConfiguration configuration, IWebHostEnvironment environment)
+    public CategoriesController(AppDbContext context, IConfiguration configuration)
     {
         this.context = context;
-        this.environment = environment;
         directoryPath = configuration["AppSettings:ImageCategoriesDir"]!;
     }
     [Route("Index")]
@@ -66,11 +64,13 @@ public class CategoriesController : Controller
         if (model.ImageFile != null)
         {
             Directory.CreateDirectory(directoryPath);
-
             string filePath = Path.Combine(directoryPath, model.ImageFile.FileName);
             model.ImagePath = model.ImageFile.FileName;
-            using var stream = System.IO.File.Create(filePath);
-            model.ImageFile.CopyTo(stream);
+            using (var stream = System.IO.File.Create(filePath))
+            {
+                if (!System.IO.File.Exists(filePath))
+                    model.ImageFile.CopyTo(stream);
+            }
         }
 
         context.ProductCategories.Add(model);

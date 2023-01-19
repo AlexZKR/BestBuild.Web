@@ -1,0 +1,102 @@
+@model Product
+@{
+    ViewData["Title"] = $"Удаление товара";
+    var discount = Model.Discount.ToString("p");
+
+}
+<div class="container mt-2">
+    <h1>Удалить товар?</h1>
+
+    <a asp-controller="Product" asp-action="IndexTable" class="btn btn-primary">Обратно к списку</a>
+    <hr>
+    <form asp-controller="Product" asp-action="DeleteConfirmed" asp-route-id="@Model.ProductId"
+        enctype="multipart/form-data" method="post">
+        <div class="row">
+            <div class="col-6">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input disabled asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea disabled asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quantity" class="control-label"></label>
+                    <input disabled asp-for="Quantity" class="form-control"></input>
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input disabled asp-for="Price" class="form-control"></input>
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DiscountedPrice" class="control-label"></label>
+                    <input disabled asp-for="DiscountedPrice" class="form-control"></input>
+                    <span asp-validation-for="DiscountedPrice" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DiscountSize" class="control-label"></label>
+                    <input disabled asp-for="DiscountSize" class="form-control"></input>
+                    <span asp-validation-for="DiscountSize" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Discount" class="control-label"></label>
+                    <input disabled value="@discount" class="form-control"></input>
+                    <span asp-validation-for="Discount" class="text-danger"></span>
+                </div>
+                <hr>
+                <h4 class="mt-2 mb-2">Характеристики товара</h4>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(Model => Model.Properties[0].Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Model => Model.Properties[0].MeasureUnit)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(Model => Model.Properties[0].Value)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in @Model.Properties)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MeasureUnit)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Value)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-6">
+                <div class="form-group row">
+                    <label asp-for="ImagePath" class="control-label"></label>
+                    <img src="~/Images/Products/@Model.ImagePath" alt="">
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 10px ;">
+                <input type="submit" value="Удалить товар" class="btn btn-danger" />
+            </div>
+
+        </div>
+    </form>
+</div>
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
