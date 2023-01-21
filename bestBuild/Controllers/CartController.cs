@@ -20,7 +20,7 @@ public class CartController : Controller
     }
     [Route("Cart")]
     [Authorize]
-    public async Task<IActionResult> Index()
+    public IActionResult Index()
     {
         cart = HttpContext.Session.Get<Cart>(cartKey);
         return View(cart);

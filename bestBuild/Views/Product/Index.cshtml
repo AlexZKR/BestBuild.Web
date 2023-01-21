@@ -1,5 +1,8 @@
 @model Product
-
+@{
+    var request = ViewContext.HttpContext.Request;
+    var returnUrl = request.Path + request.QueryString.ToUriComponent();
+}
 <div class="container">
     <div class="card">
         <div class="card-body">
@@ -13,19 +16,38 @@
                 <div class="col-lg-7 col-md-7 col-sm-6">
                     <h4 class="box-title mt-5">Описание продукта</h4>
                     <p>@Model.Description</p>
-                    <h2 class="mt-5">
-                        @Model.DiscountedPrice <small class="text-success">(-@Model.DiscountSize)</small>
-                    </h2>
-                    <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title=""
-                        data-original-title="Add to cart">
-                        <i class="fa fa-shopping-cart"></i>
-                    </button>
-                    <button class="btn btn-primary btn-rounded">Купить сейчас</button>
+                    @if (@Model.Discount > 0)
+                    {
+                        <h2 class="mt-5">
+                            @Model.DiscountedPrice руб.<small class="text-success"> скидка (-@Model.DiscountSize)
+                                руб.</small>
+                        </h2>
+                    }
+                    @if (Model.Discount == 0)
+                    {
+                        <h2 class="mt-5">
+                            @Model.Price руб.
+                        </h2>
+                    }
+                    <a asp-controller="Cart" asp-action="Add" asp-route-id="@Model.ProductId"
+                        asp-route-returnUrl="@returnUrl" class="btn btn-primary btn-rounded">
+                        Добавить в корзину
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
                     @* <h3 class="box-title mt-5">Основные характеристики</h3> *@
                     <ul class="list-unstyled">
-                        <li><a href=""><i class="fa-solid fa-truck"></i> Бесплатная доставка</a></li>
-                        <li><a href=""><i class="fa-solid fa-box"></i> Самовывоз</a></li>
-                        <li><a href=""><i class="fa fa-check text-success"></i> Выгодная доставка</a></li>
+                        <li><a asp-controller="Pages" asp-action="DeliveryTerms">
+                                <i class="fa-solid fa-truck"></i>
+                                Бесплатная
+                                доставка
+                            </a>
+                        </li>
+                        <li><a asp-controller="Pages" asp-action="SelfDelivery"><i class="fa-solid fa-box"></i>
+                                Самовывоз</a>
+                        </li>
+                        <li><a asp-controller="Pages" asp-action="PostDelivery"><i class="fa-solid fa-box"></i>
+                                Доставка почтой</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12">

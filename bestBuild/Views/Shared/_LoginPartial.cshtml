@@ -4,7 +4,7 @@
 @inject SignInManager<ClientCred> SignInManager
 @inject UserManager<ClientCred> UserManager
 @{
-    ClientCred Appuser = await UserManager.GetUserAsync(User)!;
+    ClientCred? Appuser = await UserManager.GetUserAsync(User);
 }
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User) && User != null && Appuser != null)

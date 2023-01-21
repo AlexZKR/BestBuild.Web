@@ -23,7 +23,7 @@ public class CatalogController : Controller
         var ProdCatVm = new ProductCatalogViewModel
         {
             Products = await context.Products.Where(c => c.CategoryId == id).OrderBy(n => n.Name).ToListAsync(),
-            ProductCategory = await context.ProductCategories.Where(i => i.CategoryId == id).FirstOrDefaultAsync()!,
+            ProductCategory = (await context.ProductCategories.FirstOrDefaultAsync(i => i.CategoryId == id))!,
             ProductCategories = await context.ProductCategories.ToListAsync()
         };
         return View("IndexCatalog", ProdCatVm);

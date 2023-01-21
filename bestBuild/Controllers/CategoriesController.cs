@@ -101,8 +101,8 @@ public class CategoriesController : Controller
         if (!IsAdmin) return Forbid();
         if (context is null) return Problem("context is null");
         var oldItem = await context.ProductCategories.Where(c => c.CategoryId == model.CategoryId).FirstOrDefaultAsync();
-        context.Attach(oldItem).State = EntityState.Modified;
-        oldItem.Description = model.Description;
+        context.Attach(oldItem!).State = EntityState.Modified;
+        oldItem!.Description = model.Description;
         oldItem.ImageFile = model.ImageFile;
         oldItem.ImagePath = model.ImagePath;
         oldItem.Name = model.Name;

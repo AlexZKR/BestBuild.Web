@@ -55,8 +55,33 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" asp-controller="Product" asp-action="Index">Новинки</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Доставка</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" aria-current="page" aria-haspopup="true">Информация</a>
+
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">
+                                <a class="nav-link" asp-controller="Pages" asp-action="DeliveryTerms">
+                                    <i class="fa-solid fa-truck"></i>
+                                    Бесплатная
+                                    доставка</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a class="nav-link" asp-controller="Pages" asp-action="SelfDelivery">
+                                    <i class="fa-solid fa-box"></i>
+                                    Самовывоз</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a class="nav-link" asp-controller="Pages" asp-action="PostDelivery">
+                                    <i class="fa-solid fa-passport"></i>
+                                    Доставка почтой</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a class="nav-link" asp-controller="Pages" asp-action="Payment">
+                                    <i class="fa-regular fa-money-bill-1"></i>
+                                    Условия оплаты</a>
+                            </li>
+                        </ul>
+
                     </li>
 
 

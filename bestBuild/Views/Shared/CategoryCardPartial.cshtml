@@ -1,7 +1,8 @@
 @model ProductCategory
 <div class="cat-card">
     <a asp-controller="Catalog" asp-action="Index" asp-route-id="@Model.CategoryId">
-        <img class="card-img-top" src="~/Images/Categories/@Model.ImagePath" alt=""></a>
+        <img class="card-img-top" style="width: 300px; height: 250px;" src="~/Images/Categories/@Model.ImagePath"
+            alt=""></a>
     <div class="cat-details">
         <h4><a asp-controller="Catalog" asp-action="Index" asp-route-id="@Model.CategoryId">@Model.Name</a></h4>
         <p>@Model.Description</p>

@@ -94,7 +94,7 @@ public class ProductController : Controller
         return RedirectToAction(nameof(IndexTable));
     }
 
-    public async Task<IActionResult> AddProperty([Bind(CAT_BINDING_PROPS)] Product model)
+    public IActionResult AddProperty([Bind(CAT_BINDING_PROPS)] Product model)
     {
         if (!IsAdmin) return Forbid();
         return View("CreateProduct", model);
@@ -121,8 +121,8 @@ public class ProductController : Controller
         if (!IsAdmin) return Forbid();
         if (context is null) return Problem("context is null");
         var oldItem = await context.ProductCategories.Where(c => c.CategoryId == model.CategoryId).FirstOrDefaultAsync();
-        context.Attach(oldItem).State = EntityState.Modified;
-        oldItem.Description = model.Description;
+        context.Attach(oldItem!).State = EntityState.Modified;
+        oldItem!.Description = model.Description;
         oldItem.ImageFile = model.ImageFile;
         oldItem.ImagePath = model.ImagePath;
         oldItem.Name = model.Name;
