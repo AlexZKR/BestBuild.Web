@@ -1,0 +1,12 @@
+@model ProductPropViewModel
+<div class="col">
+    <h4 class="mt-2 mb-4">Характеристики товара</h4>
+    <div class="col d-flex justify-content-between">
+        <h5>Название</h5>
+        <h5>Мера</h5>
+        <h5>Значение</h5>
+    </div>
+    @foreach (var item in @Model.Properties)
+    {
+        <partial name="ProductPropertyPartial" model="@item"></partial>
+    }

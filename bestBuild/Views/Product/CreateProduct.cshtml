@@ -51,72 +51,84 @@
 
 
             </div>
+
+            @* Характеристики товара *@
+
+
             <div class="col-6">
                 <h4 class="mt-2 mb-2">Характеристики товара</h4>
-                @if (@Model.Properties.Count > 0)
-                {
+                <div class="form-group" id="item-list">
+                    <a href="#" id="add">Add</a>
+                    <br />
+                    <input type="text" asp-for="Properties" class="items" name="@Model.Properties[0].Name" />
+                    <input type="text" asp-for="Properties" class="items" name="@Model.Properties[0].MeasureUnit" />
+                    <input type="text" asp-for="Properties" class="items" name="@Model.Properties[0].Value" />
+                </div>
+                @*
+                    @if (@Model.Properties.Count > 0)
+                    {
 
 
                     <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>
-                                    #
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(Model => Model.Properties[0].Name)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(Model => Model.Properties[0].MeasureUnit)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(Model => Model.Properties[0].Value)
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @{
-                                int i = 1;
+                    <thead>
+                    <tr>
+                    <th>
+                    #
+                    </th>
+                    <th>
+                    @Html.DisplayNameFor(Model => Model.Properties[0].Name)
+                    </th>
+                    <th>
+                    @Html.DisplayNameFor(Model => Model.Properties[0].MeasureUnit)
+                    </th>
+                    <th>
+                    @Html.DisplayNameFor(Model => Model.Properties[0].Value)
+                    </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @{
+                    int i = 1;
 
-                            }
-                            @foreach (var item in @Model.Properties)
-                            {
-                                <tr>
-                                    <td>
-                                        @(i++)
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input asp-for="@item.Name" class="form-control"></input>
-                                            <span asp-validation-for="@item.Name" class="text-danger"></span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input asp-for="@item.MeasureUnit" class="form-control"></input>
-                                            <span asp-validation-for="@item.MeasureUnit" class="text-danger"></span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input asp-for="@item.Value" class="form-control"></input>
-                                            <span asp-validation-for="@item.Value" class="text-danger"></span>
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
+                    }
+                    @foreach (var item in @Model.Properties)
+                    {
+                    <tr>
+                    <td>
+                    @(i++)
+                    </td>
+                    <td>
+                    <div class="form-group">
+                    <input asp-for="@item.Name" class="form-control"></input>
+                    <span asp-validation-for="@item.Name" class="text-danger"></span>
+                    </div>
+                    </td>
+                    <td>
+                    <div class="form-group">
+                    <input asp-for="@item.MeasureUnit" class="form-control"></input>
+                    <span asp-validation-for="@item.MeasureUnit" class="text-danger"></span>
+                    </div>
+                    </td>
+                    <td>
+                    <div class="form-group">
+                    <input asp-for="@item.Value" class="form-control"></input>
+                    <span asp-validation-for="@item.Value" class="text-danger"></span>
+                    </div>
+                    </td>
+                    </tr>
+                    }
+                    </tbody>
                     </table>
                     <button class="btn btn-success" onclick="AddFunc()">Добавить характеристику?</button>
-                }
-                @if (@Model.Properties.Count == 0)
-                {
+                    }
+                    @if (@Model.Properties.Count == 0)
+                    {
                     <hr />
                     <div>
-                        Пока у товара нет характеристик. <a class="btn btn-success" asp-controller="Product"
-                        asp-action="AddProperty">Добавить?</a>
+                    Пока у товара нет характеристик. <a class="btn btn-success" asp-controller="Product"
+                    asp-action="AddProperty">Добавить?</a>
                     </div>
-                }
+                    } *@
             </div>
         </div>
         <input type="submit" value="Добавить продукт" class="btn btn-success mt-4"></input>
@@ -127,16 +139,18 @@
 @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
 <script>
-    function AddFunc() {
-        $("button").html('AddFunc()');
-    }
-</script>
-}
+    $(function () {
 
-@functions
-{
-    public void AddFunc()
-    {
-        Model.Properties.Add(new ProductProperty());
-    }
+        $("#add").click(function (e) {
+            e.preventDefault();
+            var i = ($(".items").length) / 2;
+            var n = '<br /><input type="text" class="items" name="Properties[' + i + '].Name" />' +
+                '<input type="text" class="items" name="Properties[' + i + '].MeasureUnit" />' +
+                '<input type="text" class="items" name="Properties[' + i + '].Value" />'
+
+            $("#item-list").append(n);
+        });
+
+    });
+</script>
 }
